@@ -15,6 +15,31 @@ class HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: Image.asset('assets/images/logo.png'),
+            accountName: Text('Red'), 
+            accountEmail: Text('red@gmail.com'),
+          ),
+          ListTile(
+            leading: Image.asset('assets/images/logo.png', width: 25, height: 25,),
+            title: Text('Main'),
+            subtitle: Text('Tela Inicial'),
+            onTap: (){
+              print('home');
+            },
+          ),
+          ListTile(
+            leading: Image.asset('assets/images/logo.png', width: 25, height: 25,),
+            title: Text('Logout'),
+            subtitle: Text('Sair'),
+            onTap: (){
+              Navigator.of(context).pushReplacementNamed('/');
+            },
+          )
+        ],),
+      ),
       appBar: AppBar(
         title: Text('PokéCenter'),
         backgroundColor: Colors.red,

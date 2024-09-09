@@ -35,7 +35,8 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(
                       left: 12, right: 12, top: 20, bottom: 12
                     ),
-                    child: Column(children: [
+                    child: Column(
+                      children: [
                       TextField(
                         onChanged: (text) {
                           email = text;
