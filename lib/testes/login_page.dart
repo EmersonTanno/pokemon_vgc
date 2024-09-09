@@ -32,7 +32,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                      left: 12, right: 12, top: 20, bottom: 12
+                    ),
                     child: Column(children: [
                       TextField(
                         onChanged: (text) {
@@ -55,18 +57,31 @@ class _LoginPageState extends State<LoginPage> {
                           border: OutlineInputBorder(),
                         ),
                       ),
+                      SizedBox(height: 15,),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                        ),
+                        onPressed: () {
+                        if(email == 'kannon@gmail.com' && password == '123'){
+                          Navigator.of(context).pushReplacementNamed('/home');
+                        }else{
+                          print('Negado');
+                        }
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        child: Text('Entrar',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white
+                          ),
+                        ),
+                      )
+                      )
                     ],),
                   ),
                 ),
-                SizedBox(height: 15,),
-                ElevatedButton(onPressed: () {
-                  if(email == 'kannon@gmail.com' && password == '123'){
-                    Navigator.of(context).pushReplacementNamed('/home');
-                  }else{
-                    print('Negado');
-                  }
-                },
-                 child: Text('Entrar'))
               ],
             ),
           ),
