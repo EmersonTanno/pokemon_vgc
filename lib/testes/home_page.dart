@@ -18,7 +18,9 @@ class HomePageState extends State<HomePage>{
       drawer: Drawer(
         child: Column(children: [
           UserAccountsDrawerHeader(
-            currentAccountPicture: Image.asset('assets/images/logo.png'),
+            currentAccountPicture: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.asset('assets/images/red_profile.jpg')),
             accountName: Text('Red'), 
             accountEmail: Text('red@gmail.com'),
           ),
@@ -27,7 +29,7 @@ class HomePageState extends State<HomePage>{
             title: Text('Main'),
             subtitle: Text('Tela Inicial'),
             onTap: (){
-              print('home');
+              Navigator.of(context).pushReplacementNamed('/homeTest');
             },
           ),
           ListTile(

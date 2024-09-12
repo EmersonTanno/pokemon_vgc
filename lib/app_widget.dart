@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/testes/app_controller.dart';
 import 'package:pokemon_vgc/testes/home_page.dart';
-import 'package:pokemon_vgc/team_builder/team_builder_home.dart';
-import 'package:pokemon_vgc/testes/login_page.dart';
+import 'package:pokemon_vgc/app/views/team_builder_home_view.dart';
+import 'package:pokemon_vgc/app/views/login_page.dart';
+import 'package:pokemon_vgc/testes/views/home_view.dart';
 
 class AppWidget extends StatelessWidget{
 
@@ -20,8 +21,9 @@ class AppWidget extends StatelessWidget{
           ),
           initialRoute: '/',
           routes: {
-            '/': (context) => LoginPage(),
+            '/': (context) => TeamBuilderHome(),
             '/home': (context) => HomePage(),
+            '/homeTest': (context) => HomeView(),
           },
           //home: TeamBuilderHome(),
         );
