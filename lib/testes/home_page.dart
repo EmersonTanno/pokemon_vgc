@@ -29,7 +29,7 @@ class HomePageState extends State<HomePage>{
             title: Text('Main'),
             subtitle: Text('Tela Inicial'),
             onTap: (){
-              Navigator.of(context).pushReplacementNamed('/homeTest');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           ListTile(

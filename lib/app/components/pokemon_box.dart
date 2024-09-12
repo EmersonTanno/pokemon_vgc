@@ -13,7 +13,7 @@ class PokemonBox extends StatelessWidget {
     
     return Container(
       width: screenWidth - 50,
-      height: screenWidth / 6,
+      height: screenWidth / 4,
       child: Card(
         color: const Color.fromARGB(255, 175, 175, 175),
         child: Row(
@@ -76,27 +76,27 @@ class PokemonBox extends StatelessWidget {
                   children: [
                     Text(
                       '- HP: ${pokemon.hp}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                     Text(
                       '- Atk: ${pokemon.atk}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                     Text(
                       '- Def: ${pokemon.def}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                     Text(
                       '- SpA: ${pokemon.spa}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                     Text(
                       '- SpD: ${pokemon.spd}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                     Text(
                       '- Spe: ${pokemon.spe}',
-                      style: TextStyle(fontSize: screenWidth * 0.015), 
+                      style: TextStyle(fontSize: screenWidth * 0.02), 
                     ),
                   ],
                 ),
@@ -116,27 +116,27 @@ class PokemonBox extends StatelessWidget {
                   children: [
                     Text(
                       'Move Set:',
-                      style: TextStyle(fontSize: screenWidth * 0.02), 
+                      style: TextStyle(fontSize: screenWidth * 0.03), 
                     ),
                     if(pokemon.move1 != 'move1')
                     Text(
                       '- ${pokemon.move1}',
-                      style: TextStyle(fontSize: screenWidth * 0.019), 
+                      style: TextStyle(fontSize: screenWidth * 0.03), 
                     ),
                     if(pokemon.move2 != 'move2')
                     Text(
                       '- ${pokemon.move2}',
-                      style: TextStyle(fontSize: screenWidth * 0.019), 
+                      style: TextStyle(fontSize: screenWidth * 0.03), 
                     ),
                     if(pokemon.move3 != 'move3')
                     Text(
                       '- ${pokemon.move3}',
-                      style: TextStyle(fontSize: screenWidth * 0.019), 
+                      style: TextStyle(fontSize: screenWidth * 0.03), 
                     ),
                     if(pokemon.move4 != 'move4')
                     Text(
                       '- ${pokemon.move4}',
-                      style: TextStyle(fontSize: screenWidth * 0.019), 
+                      style: TextStyle(fontSize: screenWidth * 0.03), 
                     ),
                   ],
                 ),

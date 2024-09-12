@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/pokemon_box.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 
 class TeamBuilderHome extends StatefulWidget {
   @override
@@ -11,15 +12,15 @@ class TeamBuilderHome extends StatefulWidget {
 
 class TeamBuilderHomeState extends State<TeamBuilderHome> {
 
-  final PokemonModel Ceruledge = PokemonModel('Bitter Blade', 'move2', 'move3', 'move4', name: 'Ceruledge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png');
-  final PokemonModel Armarouge = PokemonModel('move1', 'move2', 'move3', 'move4', name: 'Armarouge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png');
-  
+  final PokemonModel Ceruledge = PokemonModel('Bitter Blade', 'Bitter Blade', 'Bitter Blade', 'Bitter Blade', name: 'Ceruledge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png');
+  final PokemonModel Armarouge = PokemonModel('Armor Cannon', 'Armor Cannon', 'Armor Cannon', 'Armor Cannon', name: 'Armarouge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png');
 
   @override
   Widget build(BuildContext context) {
+     final PokemonTeamModel team = PokemonTeamModel('Armor', Ceruledge, Armarouge, Ceruledge, Armarouge, Ceruledge, Armarouge);
     return Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('Team Name')),
+          title: Center(child: Text(team.team_name)),
           backgroundColor: Colors.red,
         ),
 
@@ -55,27 +56,27 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                PokemonBox(pokemon: Ceruledge,),
+                PokemonBox(pokemon: team.pokemon1,),
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height/1000,
                 ),
-                PokemonBox(pokemon: Armarouge,),
+                PokemonBox(pokemon: team.pokemon2,),
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height/1000,
                 ),
-                PokemonBox(pokemon: Ceruledge,),
+                PokemonBox(pokemon: team.pokemon3,),
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height/1000,
                 ),
-                PokemonBox(pokemon: Armarouge,),
+                PokemonBox(pokemon: team.pokemon4,),
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height/1000,
                 ),
-                PokemonBox(pokemon: Ceruledge,),
+                PokemonBox(pokemon: team.pokemon5,),
                 SizedBox(
-                  height: 30,
+                  height: MediaQuery.of(context).size.height/1000,
                 ),
-                PokemonBox(pokemon: Armarouge,),
+                PokemonBox(pokemon: team.pokemon6,),
                 
               ],
             ),
