@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box_image.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box_main_info.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box_moveset.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box_status.dart';
+import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box_image.dart';
+import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box_main_info.dart';
+import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box_moveset.dart';
+import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box_status.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 
 class PokemonBox extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_vgc/app/components/login_page/button_login_page.dart';
+import 'package:pokemon_vgc/app/controllers/login_page_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,6 +10,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  late LoginPageController loginPageController;
+  @override
+  void initState(){
+    super.initState();
+    loginPageController = LoginPageController();
+  }
+
   String email = '';
   String password = '';
 
@@ -59,27 +69,14 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(height: 15,),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                        ),
-                        onPressed: () {
-                        if(email == 'kannon@gmail.com' && password == '123'){
-                          Navigator.of(context).pushReplacementNamed('/home');
-                        }else{
-                          print('Negado');
-                        }
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        child: Text('Entrar',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white
-                          ),
-                        ),
-                      )
-                      )
+
+                      ButtonLoginPage(text: 'Entrar', funct: ()=> loginPageController.login(email, password, context)),
+
+                      SizedBox(height: 15,),
+
+                      ButtonLoginPage(text: 'Registrar', funct: ()=> loginPageController.register(context))
+                      
+
                     ],),
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/testes/components/currency_box.dart';
-import 'package:pokemon_vgc/testes/controllers/home_controller.dart';
+import 'package:pokemon_vgc/testes_delete_later/components/currency_box.dart';
+import 'package:pokemon_vgc/testes_delete_later/controllers/home_controller.dart';
 
 class HomeView extends StatefulWidget {
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/testes/model/currency_model.dart';
+import 'package:pokemon_vgc/testes_delete_later/model/currency_model.dart';
 
 class HomeController{
   late List<CurrencyModel> currencies;

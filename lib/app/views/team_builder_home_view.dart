@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box.dart';
+import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 
@@ -12,8 +12,8 @@ class TeamBuilderHome extends StatefulWidget {
 
 class TeamBuilderHomeState extends State<TeamBuilderHome> {
 
-  final PokemonModel Ceruledge = PokemonModel('Bitter Blade', 'Bitter Blade', 'Bitter Blade', 'Bitter Blade', name: 'Ceruledge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png');
-  final PokemonModel Armarouge = PokemonModel('Armor Cannon', 'Armor Cannon', 'Armor Cannon', 'Armor Cannon', name: 'Armarouge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png');
+  final PokemonModel Ceruledge = PokemonModel(name: 'Ceruledge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png', move1: 'Bitter Blade', move2: 'Bitter Blade', move3: 'Bitter Blade', move4: 'Bitter Blade');
+  final PokemonModel Armarouge = PokemonModel(name: 'Armarouge', lvl: 50, nature: 'Adamant', ability:'Flash Fire', hp: 75, atk: 125, def: 80, spa: 60, spd: 100, spe: 85, image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png', move1: 'Armor Cannon', move2: 'Armor Cannon', move3: 'Armor Cannon', move4: 'Armor Cannon',);
 
   @override
   Widget build(BuildContext context) {
