@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     loginPageController = LoginPageController();
   }
 
-  String email = '';
+  String username = '';
   String password = '';
 
   Widget _body(){
@@ -49,11 +49,11 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                       TextField(
                         onChanged: (text) {
-                          email = text;
+                          username = text;
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          labelText: 'EMAIL',
+                          labelText: 'USERNAME',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 15,),
 
-                      ButtonLoginPage(text: 'Entrar', funct: ()=> loginPageController.login(email, password, context)),
+                      ButtonLoginPage(text: 'Entrar', funct: ()=> loginPageController.login(username, password, context)),
 
                       SizedBox(height: 15,),
 

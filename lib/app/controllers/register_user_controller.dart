@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
@@ -6,8 +5,7 @@ import 'package:pokemon_vgc/app/models/user_model.dart';
 class RegisterUserController {
   JsonSave jsonSave = JsonSave();
 
-  Future<void> registerUser(String username, String email, String password,
-      BuildContext context) async {
+  Future<void> registerUser(String username, String email, String password, BuildContext context) async {
 
     UserModel user = UserModel(
       id: 0, 
