@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/testes_delete_later/app_controller.dart';
+import 'package:pokemon_vgc/app/controllers/app_controller.dart';
 
 class HomePage extends StatefulWidget{
   @override
