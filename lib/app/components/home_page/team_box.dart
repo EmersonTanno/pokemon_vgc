@@ -45,9 +45,18 @@ class TeamBox extends StatelessWidget {
                             //color: Colors.yellow,
                             width: MediaQuery.of(context).size.width / 8,
                             height: MediaQuery.of(context).size.height,
-                            child: Image.network(
+                            child: Stack(
+                              children: [
+                                Positioned.fill(child: 
+                                Image.asset(
+                                'assets/images/pokeball.png',
+                                fit: BoxFit.contain),),
+                                Positioned.fill(child: Image.network(
                                 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1018.png',
                                 fit: BoxFit.contain),
+                                ),
+                              ],
+                            )
                           ),
                         ),
                         Expanded(
@@ -56,9 +65,18 @@ class TeamBox extends StatelessWidget {
                             //color: Colors.yellow,
                             width: MediaQuery.of(context).size.width / 8,
                             height: MediaQuery.of(context).size.height,
-                            child: Image.network(
+                            child: Stack(
+                              children: [
+                                Positioned.fill(child: 
+                                Image.asset(
+                                'assets/images/pokeball.png',
+                                fit: BoxFit.contain),),
+                                Positioned.fill(child: Image.network(
                                 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/658.png',
                                 fit: BoxFit.contain),
+                                ),
+                              ],
+                            )
                           ),
                         ),
                         Expanded(
