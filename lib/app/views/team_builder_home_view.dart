@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/components/pokemon_box.dart';
+import 'package:pokemon_vgc/app/components/pokemon_box/pokemon_box.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 
