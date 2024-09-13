@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:pokemon_vgc/app/models/user_model.dart';  // Biblioteca do navegador
+import 'package:flutter/material.dart';
+import 'package:pokemon_vgc/app/models/user_model.dart'; // Biblioteca do navegador
 
 class JsonSave {
   Future<void> saveJsonToLocalStorage(String jsonData, String key) async {
@@ -18,33 +19,58 @@ class JsonSave {
     }
   }
 
-  Future<void> addUserToLocalStorage(UserModel user, String key) async {
-
+  Future<void> addUserToLocalStorage(
+      UserModel user, String key, BuildContext context) async {
+    // Carregar os dados existentes no localStorage
     Map<String, dynamic> jsonFileContent = await readJsonFromLocalStorage(key);
 
+    // Recuperar a lista de usuários
     List<dynamic> usersList = jsonFileContent['users'] ?? [];
 
-    int newId = 1;
-    if (usersList.isNotEmpty) {
-      newId = usersList.map((user) => user['id']).reduce((a, b) => a > b ? a : b) + 1;
+    // Verificar se já existe um usuário com o mesmo username ou email
+    bool userExists = usersList.any((existingUser) =>
+        existingUser['name'] == user.name ||
+        existingUser['email'] == user.email);
+
+    if (userExists) {
+      print('Login negado: username ou senha incorretos.');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User ou E-mail já existem')),
+      );
+    } else {
+      // Calcular o próximo ID com base no maior ID existente
+      int newId = 1;
+      if (usersList.isNotEmpty) {
+        newId = usersList
+                .map((user) => user['id'])
+                .reduce((a, b) => a > b ? a : b) +
+            1;
+      }
+
+      // Atualizar o ID do novo usuário
+      user = UserModel(
+        id: newId,
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      );
+
+      // Adicionar o novo usuário à lista
+      usersList.add(user.toJson());
+
+      // Atualizar o conteúdo do arquivo JSON
+      jsonFileContent['users'] = usersList;
+
+      // Salvar os dados atualizados no localStorage
+      String updatedJsonData = jsonEncode(jsonFileContent);
+      await saveJsonToLocalStorage(updatedJsonData, key);
+
+      print('Usuário cadastrado com sucesso.');
+      
+      Navigator.of(context).pushReplacementNamed('/home');
     }
-
-    user = UserModel(
-      id: newId,
-      name: user.name,
-      email: user.email,
-      password: user.password,
-    );
-
-    usersList.add(user.toJson());
-
-    jsonFileContent['users'] = usersList;
-
-    String updatedJsonData = jsonEncode(jsonFileContent);
-    await saveJsonToLocalStorage(updatedJsonData, key);
   }
 
-  // Função para imprimir o conteúdo do localStorage
   void printLocalStorage(String key) {
     String? jsonData = window.localStorage[key];
     if (jsonData != null) {

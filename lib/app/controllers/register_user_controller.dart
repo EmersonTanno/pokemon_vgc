@@ -14,10 +14,9 @@ class RegisterUserController {
       password: password,
     );
 
-    await jsonSave.addUserToLocalStorage(user, 'users_data');
+    await jsonSave.addUserToLocalStorage(user, 'users_data', context);
 
-    printUsers();
-    Navigator.of(context).pushReplacementNamed('/home');
+    //printUsers();
   }
 
   void printUsers() {
