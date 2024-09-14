@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
-import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class HomePageController {

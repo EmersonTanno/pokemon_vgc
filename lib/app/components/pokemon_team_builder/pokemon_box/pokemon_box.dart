@@ -15,6 +15,7 @@ class PokemonBox extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     
+    if(pokemon.name != ''){
     return Container(
       width: screenWidth - 50,
       height: screenWidth / 4,
@@ -22,7 +23,6 @@ class PokemonBox extends StatelessWidget {
         color: const Color.fromARGB(255, 175, 175, 175),
         child: Row(
           children: [
-
             // Image of the Pokemon
             PokemonBoxImage(pokemon: pokemon,),
             
@@ -42,5 +42,15 @@ class PokemonBox extends StatelessWidget {
         ),
       ),
     );
+    } else {
+      return Container(
+      width: screenWidth - 50,
+      height: screenWidth / 4,
+      child: Card(
+        color: const Color.fromARGB(255, 175, 175, 175),
+        child: Center(child: Text('Espaço Vazio'),)
+      ),
+    );
+    }
   }
 }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/login_page/button_login_page.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/login_page_controller.dart';
-import 'package:pokemon_vgc/app/models/pokemon_model.dart';
-import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class LoginPage extends StatefulWidget {
@@ -41,10 +39,11 @@ class _LoginPageState extends State<LoginPage> {
                     // Cria um usuário fictício
                     UserModel user = loginPageController.createUser();
                     UserModel user2 = loginPageController.createUser2();
+                    UserModel user3 = loginPageController.createUser3();
 
                     // Chama a função para salvar o usuário se o localStorage estiver vazio
-                    await jsonSave.saveIfEmpty(user, user2, 'users_data', context);
-                    jsonSave.printLocalStorage('users_data');
+                    await jsonSave.saveIfEmpty(user, user2, user3, 'users_data', context);
+                    //jsonSave.printLocalStorage('users_data');
                     
                   },
                   child: Container(
