@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
+import 'package:pokemon_vgc/app/views/home_page_view.dart';
 
 class LoginPageController {
 
@@ -14,6 +15,7 @@ class LoginPageController {
     for (var user in usersList) {
       if (user['name'] == username && user['password'] == password) {
         userFound = true;
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(userId: user['id'])));
         Navigator.of(context).pushReplacementNamed('/home');
         break;
       }

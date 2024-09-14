@@ -5,6 +5,7 @@ import 'package:pokemon_vgc/app/views/team_builder_home_view.dart';
 import 'package:pokemon_vgc/app/views/login_page_view.dart';
 
 class AppWidget extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -18,7 +19,7 @@ class AppWidget extends StatelessWidget {
           routes: {
             '/': (context) => LoginPage(),
             '/register': (context) => RegisterUserView(),
-            '/home': (context) => HomePage(),
+            '/home': (context) => HomePage(userId: 1),
             '/pokemonTeam': (context) => TeamBuilderHome(),
           },
         );
