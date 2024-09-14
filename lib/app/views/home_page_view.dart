@@ -5,8 +5,6 @@ import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
-  
-
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -16,16 +14,15 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   late Future<List<dynamic>> teamsFuture;
   late int userId;
-  late UserModel user;
+  late Future<UserModel> userData;
   final HomePageController homePageController = HomePageController();
   final JsonSave jsonSave = JsonSave();
 
-  
   @override
   void initState() {
     super.initState();
     userId = int.parse(jsonSave.returnLoggeddUser('logged_user'));
-    
+    userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
   }
 
@@ -36,16 +33,48 @@ class HomePageState extends State<HomePage> {
         backgroundColor: Color.fromARGB(255, 161, 161, 161),
         child: Column(
           children: [
-            UserAccountsDrawerHeader(
-              currentAccountPicture: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.asset('assets/images/red_profile.jpg'),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.red,
-              ),
-              accountName: Text('Red ${userId}'),
-              accountEmail: Text('red@gmail.com'),
+            FutureBuilder<UserModel>(
+              future: userData,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return UserAccountsDrawerHeader(
+                    currentAccountPicture: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset('assets/images/premier_ball_logo.png'),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                    ),
+                    accountName: Text('Carregando...'),
+                    accountEmail: Text('Carregando...'),
+                  );
+                } else if (snapshot.hasError) {
+                  return UserAccountsDrawerHeader(
+                    currentAccountPicture: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset('assets/images/premier_ball_logo.png'),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                    ),
+                    accountName: Text('Erro ao carregar'),
+                    accountEmail: Text('Erro ao carregar'),
+                  );
+                } else {
+                  UserModel user = snapshot.data!;
+                  return UserAccountsDrawerHeader(
+                    currentAccountPicture: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.asset('assets/images/premier_ball_logo.png'),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                    ),
+                    accountName: Text(user.name),
+                    accountEmail: Text(user.email),
+                  );
+                }
+              },
             ),
             ListTile(
               leading: Image.asset(
@@ -70,7 +99,7 @@ class HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).pushReplacementNamed('/');
               },
-            )
+            ),
           ],
         ),
       ),
