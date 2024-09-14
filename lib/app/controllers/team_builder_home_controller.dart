@@ -38,6 +38,7 @@ void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: Color.fromARGB(255, 215, 214, 216),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -68,8 +69,15 @@ void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
                         height: MediaQuery.of(context).size.height/6,
                         child: Image.network(pokemon.image, fit: BoxFit.contain)
                         ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width/100,
+                        decoration: BoxDecoration(
+                          border: Border(right: BorderSide(color: Colors.black, width: 2.0))
+                        ),
+                      ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width/10,
+                        width: MediaQuery.of(context).size.width/25,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,8 +98,14 @@ void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
                           Text('- ${pokemon.move4}', style: TextStyle(fontSize: screenWidth * 0.02))
                         ],
                       ),
-                      SizedBox(
+                     Container(
                         width: MediaQuery.of(context).size.width/10,
+                        decoration: BoxDecoration(
+                          border: Border(right: BorderSide(color: Colors.black, width: 2.0))
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width/25,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,10 +114,12 @@ void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
                             height: MediaQuery.of(context).size.height/100,
                           ),
                           Text('Status:', style: TextStyle(fontSize: screenWidth * 0.025)),
-                          Text('HP ${pokemon.hp}', style: TextStyle(fontSize: screenWidth * 0.02)),
-                          Text('Atk ${pokemon.atk}', style: TextStyle(fontSize: screenWidth * 0.02)),
-                          Text('Def ${pokemon.def}', style: TextStyle(fontSize: screenWidth * 0.02)),
-                          Text('SpA ${pokemon.spa}', style: TextStyle(fontSize: screenWidth * 0.02))
+                          Text('HP: ${pokemon.hp}', style: TextStyle(fontSize: screenWidth * 0.025)),
+                          Text('Attack: ${pokemon.atk}', style: TextStyle(fontSize: screenWidth * 0.025)),
+                          Text('Defense: ${pokemon.def}', style: TextStyle(fontSize: screenWidth * 0.025)),
+                          Text('Sp. Atk: ${pokemon.spa}', style: TextStyle(fontSize: screenWidth * 0.025)),
+                          Text('Sp. Def: ${pokemon.spd}', style: TextStyle(fontSize: screenWidth * 0.025)),
+                          Text('Speed: ${pokemon.spe}', style: TextStyle(fontSize: screenWidth * 0.025)),
                         ]
                       )
                     ],
