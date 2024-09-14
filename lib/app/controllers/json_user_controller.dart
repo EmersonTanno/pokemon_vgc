@@ -118,7 +118,7 @@ class JsonSave {
     }
   }
 
-  String returnLoggeddUser(String key){
+  String returnJsonId(String key){
     String? jsonData = window.localStorage[key];
     return jsonData.toString();
   }

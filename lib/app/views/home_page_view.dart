@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_vgc/app/components/custom_drawer/custom_drawer.dart';
 import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
@@ -21,7 +22,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    userId = int.parse(jsonSave.returnLoggeddUser('logged_user'));
+    userId = int.parse(jsonSave.returnJsonId('logged_user'));
     userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
   }
@@ -29,79 +30,20 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Color.fromARGB(255, 161, 161, 161),
-        child: Column(
-          children: [
-            FutureBuilder<UserModel>(
-              future: userData,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return UserAccountsDrawerHeader(
-                    currentAccountPicture: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/premier_ball_logo.png'),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                    ),
-                    accountName: Text('Carregando...'),
-                    accountEmail: Text('Carregando...'),
-                  );
-                } else if (snapshot.hasError) {
-                  return UserAccountsDrawerHeader(
-                    currentAccountPicture: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/premier_ball_logo.png'),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                    ),
-                    accountName: Text('Erro ao carregar'),
-                    accountEmail: Text('Erro ao carregar'),
-                  );
-                } else {
-                  UserModel user = snapshot.data!;
-                  return UserAccountsDrawerHeader(
-                    currentAccountPicture: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset('assets/images/premier_ball_logo.png'),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                    ),
-                    accountName: Text(user.name),
-                    accountEmail: Text(user.email),
-                  );
-                }
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                'assets/images/logo.png',
-                width: 25,
-                height: 25,
-              ),
-              title: Text('Main'),
-              subtitle: Text('Tela Inicial'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/home');
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                'assets/images/logo.png',
-                width: 25,
-                height: 25,
-              ),
-              title: Text('Logout'),
-              subtitle: Text('Sair'),
-              onTap: () {
-                Navigator.of(context).pushReplacementNamed('/');
-              },
-            ),
-          ],
-        ),
+      drawer: FutureBuilder<UserModel>(
+        future: userData,
+        builder: (context, snapshot) {
+          UserModel? user = snapshot.data;
+          return CustomDrawer(
+            user: user, 
+            onLogout: () {
+              Navigator.of(context).pushReplacementNamed('/');
+            },
+            onNavigateHome: () {
+              Navigator.of(context).pushReplacementNamed('/home');
+            },
+          );
+        },
       ),
       appBar: AppBar(
         title: Text('PokéCenter'),
@@ -123,7 +65,7 @@ class HomePageState extends State<HomePage> {
           return Container(
             height: double.infinity,
             width: double.infinity,
-            color: Color.fromARGB(255, 228, 225, 230),
+            color: Color.fromARGB(255, 229, 223, 233),
             child: Center(
               child: Container(
                 height: double.infinity,
