@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
+import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
   
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   late Future<List<dynamic>> teamsFuture;
   late int userId;
+  late UserModel user;
   final HomePageController homePageController = HomePageController();
   final JsonSave jsonSave = JsonSave();
 
@@ -23,7 +25,7 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     userId = int.parse(jsonSave.returnLoggeddUser('logged_user'));
-
+    
     teamsFuture = homePageController.loadTeams(userId);
   }
 

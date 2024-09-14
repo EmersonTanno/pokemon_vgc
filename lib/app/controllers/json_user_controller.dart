@@ -19,12 +19,13 @@ class JsonSave {
   }
 
   Future<void> saveIfEmpty(
-      UserModel user, String key, BuildContext context) async {
+      UserModel user, UserModel user2, String key, BuildContext context) async {
     String? jsonData = window.localStorage[key];
 
     if (jsonData == null || jsonData.isEmpty) {
       print('LocalStorage está vazio. Salvando usuário.');
       await addUserToLocalStorageLoginPage(user, key, context);
+      await addUserToLocalStorageLoginPage(user2, key, context);
     } else {
       print('LocalStorage já contém dados.');
     }
