@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 
 class HomePageController {

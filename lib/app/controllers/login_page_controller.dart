@@ -15,7 +15,7 @@ class LoginPageController {
     for (var user in usersList) {
       if (user['name'] == username && user['password'] == password) {
         userFound = true;
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(userId: user['id'])));
+        jsonSave.saveJsonToLocalStorage(user['id'].toString(), 'logged_user');
         Navigator.of(context).pushReplacementNamed('/home');
         break;
       }

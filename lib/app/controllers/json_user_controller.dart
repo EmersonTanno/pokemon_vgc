@@ -76,8 +76,10 @@ class JsonSave {
       await saveJsonToLocalStorage(updatedJsonData, key);
 
       print('Usuário cadastrado com sucesso.');
-
-      Navigator.of(context).pushReplacementNamed('/home');
+       ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Usuário Criado')),
+      );
+      Navigator.of(context).pushReplacementNamed('/');
     }
   }
 
@@ -115,5 +117,10 @@ class JsonSave {
     } else {
       print("Nenhum dado encontrado para a chave '$key'.");
     }
+  }
+
+  String returnLoggeddUser(String key){
+    String? jsonData = window.localStorage[key];
+    return jsonData.toString();
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
+import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 
 class HomePage extends StatefulWidget {
-  final int userId;
+  
 
-  const HomePage({Key? key, required this.userId}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => HomePageState();
@@ -13,18 +14,24 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   late Future<List<dynamic>> teamsFuture;
+  late int userId;
   final HomePageController homePageController = HomePageController();
+  final JsonSave jsonSave = JsonSave();
 
+  
   @override
   void initState() {
     super.initState();
-    teamsFuture = homePageController.loadTeams(widget.userId);
+    userId = int.parse(jsonSave.returnLoggeddUser('logged_user'));
+
+    teamsFuture = homePageController.loadTeams(userId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
+        backgroundColor: Color.fromARGB(255, 161, 161, 161),
         child: Column(
           children: [
             UserAccountsDrawerHeader(
@@ -32,7 +39,10 @@ class HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(30),
                 child: Image.asset('assets/images/red_profile.jpg'),
               ),
-              accountName: Text('Red ${widget.userId}'),
+              decoration: BoxDecoration(
+                color: Colors.red,
+              ),
+              accountName: Text('Red ${userId}'),
               accountEmail: Text('red@gmail.com'),
             ),
             ListTile(
@@ -44,7 +54,7 @@ class HomePageState extends State<HomePage> {
               title: Text('Main'),
               subtitle: Text('Tela Inicial'),
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/pokemonTeam');
+                Navigator.of(context).pushReplacementNamed('/home');
               },
             ),
             ListTile(
@@ -79,17 +89,21 @@ class HomePageState extends State<HomePage> {
 
           List<dynamic> teams = snapshot.data!;
 
-          return Center(
-            child: Container(
-              color: Colors.green,
-              height: double.infinity,
-              width: MediaQuery.of(context).size.width - 50,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    ...teams.map((team) => TeamBox(teamData: team)).toList(),
-                  ],
+          return Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: Color.fromARGB(255, 161, 161, 161),
+            child: Center(
+              child: Container(
+                height: double.infinity,
+                width: MediaQuery.of(context).size.width - 50,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      ...teams.map((team) => TeamBox(teamData: team)).toList(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -103,7 +117,7 @@ class HomePageState extends State<HomePage> {
         ),
         onPressed: () {
           setState(() {
-            teamsFuture = homePageController.loadTeams(widget.userId);
+            teamsFuture = homePageController.loadTeams(userId);
           });
         },
       ),

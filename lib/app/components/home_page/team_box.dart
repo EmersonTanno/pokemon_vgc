@@ -57,7 +57,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon1']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon1']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -79,7 +79,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon2']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon2']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -101,7 +101,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon3']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon3']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -123,7 +123,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon4']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon4']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -145,7 +145,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon5']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon5']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -167,7 +167,7 @@ class TeamBox extends StatelessWidget {
                             ),
                             Positioned.fill(
                               child: Image.network(
-                                '${teamData['pokemon6']['image']}' ?? 'https://example.com/default.png',
+                                '${teamData['pokemon6']['image']}',
                                 fit: BoxFit.contain,
                               ),
                             ),

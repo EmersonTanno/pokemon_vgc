@@ -19,7 +19,7 @@ class AppWidget extends StatelessWidget {
           routes: {
             '/': (context) => LoginPage(),
             '/register': (context) => RegisterUserView(),
-            '/home': (context) => HomePage(userId: 1),
+            '/home': (context) => HomePage(),
             '/pokemonTeam': (context) => TeamBuilderHome(),
           },
         );

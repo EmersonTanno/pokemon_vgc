@@ -15,7 +15,6 @@ class RegisterUserController {
     );
 
     await jsonSave.addUserToLocalStorage(user, 'users_data', context);
-
     //printUsers();
   }
 

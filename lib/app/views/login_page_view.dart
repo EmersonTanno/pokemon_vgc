@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       password: '123',
                       teams: [
                         PokemonTeamModel(
-                          'Time Poderoso',
+                          'Kannon',
                           PokemonModel(
                             name: 'Greninja',
                             lvl: 50,
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         PokemonTeamModel(
-                          'Time Espers',
+                          'Unova',
                           PokemonModel(
                             name: 'Lucario',
                             lvl: 50,
