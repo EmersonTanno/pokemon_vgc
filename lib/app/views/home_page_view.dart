@@ -123,7 +123,7 @@ class HomePageState extends State<HomePage> {
           return Container(
             height: double.infinity,
             width: double.infinity,
-            color: Color.fromARGB(255, 161, 161, 161),
+            color: Color.fromARGB(255, 228, 225, 230),
             child: Center(
               child: Container(
                 height: double.infinity,

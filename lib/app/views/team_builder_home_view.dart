@@ -17,7 +17,7 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
 
   @override
   Widget build(BuildContext context) {
-     final PokemonTeamModel team = PokemonTeamModel('Armor', Ceruledge, Armarouge, Ceruledge, Armarouge, Ceruledge, Armarouge);
+     final PokemonTeamModel team = PokemonTeamModel(1, 'Armor', Ceruledge, Armarouge, Ceruledge, Armarouge, Ceruledge, Armarouge);
     return Scaffold(
         appBar: AppBar(
           title: Center(child: Text(team.team_name)),

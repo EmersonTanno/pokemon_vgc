@@ -1,24 +1,26 @@
+import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class HomePageController {
   Future<List<dynamic>> loadTeams(int userId) async {
     JsonSave jsonSave = JsonSave();
-    List<dynamic> teams = []; // Inicializa a lista de times
+    List<dynamic> teams = []; 
 
     Map<String, dynamic> jsonFileContent =
         await jsonSave.readJsonFromLocalStorage('users_data');
     List<dynamic> usersList =
-        jsonFileContent['users'] ?? []; // Obtém a lista de usuários
+        jsonFileContent['users'] ?? []; 
 
     for (var user in usersList) {
       if (user['id'] == userId) {
         teams = user['teams'] ?? [];
-        break; // Encerra o loop após encontrar o usuário
+        break; 
       }
     }
 
-    return teams; // Retorna a lista de times
+    return teams; 
   }
 
   Future<UserModel> getUserInfo(int userId) async {
@@ -41,5 +43,13 @@ class HomePageController {
     }
 
     return user;
+  }
+
+
+  void selectTeam(BuildContext context, int team_id){
+    JsonSave jsonSave = JsonSave();
+
+    jsonSave.saveJsonToLocalStorage(team_id.toString(), 'team_data');
+    Navigator.of(context).pushReplacementNamed('/pokemonTeam');
   }
 }

@@ -44,6 +44,7 @@ class LoginPageController {
       password: '123',
       teams: [
         PokemonTeamModel(
+          1,
           'Kannon',
           PokemonModel(
             name: 'Greninja',
@@ -155,6 +156,7 @@ class LoginPageController {
           ),
         ),
         PokemonTeamModel(
+          2,
           'Unova',
           PokemonModel(
             name: 'Lucario',
@@ -277,6 +279,7 @@ class LoginPageController {
       password: '123',
       teams: [
         PokemonTeamModel(
+          1,
           'Eevee',
           PokemonModel(
             name: 'Umbreon',

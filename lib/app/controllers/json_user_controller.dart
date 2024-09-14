@@ -33,10 +33,8 @@ class JsonSave {
 
   Future<void> addUserToLocalStorage(
       UserModel user, String key, BuildContext context) async {
-    // Carregar os dados existentes no localStorage
     Map<String, dynamic> jsonFileContent = await readJsonFromLocalStorage(key);
 
-    // Recuperar a lista de usuários
     List<dynamic> usersList = jsonFileContent['users'] ?? []; 
     // Verificar se já existe um usuário com o mesmo username ou email
     bool userExists = usersList.any((existingUser) =>
