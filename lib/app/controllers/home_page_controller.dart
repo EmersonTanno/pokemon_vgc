@@ -56,7 +56,6 @@ class HomePageController {
 
   void createTeamAlert(BuildContext context) {
     TextEditingController teamNameController = TextEditingController();
-    final JsonSave jsonSave = JsonSave();
 
     showDialog(
       context: context,

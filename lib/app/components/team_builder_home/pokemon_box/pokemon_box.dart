@@ -9,7 +9,7 @@ import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 class PokemonBox extends StatelessWidget {
 
   final PokemonModel pokemon;
-  TeamBuilderHomeController teamBuilderHomeController = TeamBuilderHomeController();
+  final TeamBuilderHomeController teamBuilderHomeController = TeamBuilderHomeController();
   PokemonBox({super.key, required this.pokemon});
 
   @override

@@ -202,9 +202,6 @@ class TeamBuilderHomeController {
 
   void deleteDialog(
       BuildContext context, String teamName, int userId, int teamId) {
-    final JsonSave jsonSave = JsonSave();
-    double screenWidth = MediaQuery.of(context).size.width;
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
