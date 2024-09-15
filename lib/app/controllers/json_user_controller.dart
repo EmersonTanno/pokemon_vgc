@@ -122,7 +122,11 @@ class JsonSave {
 
   String returnJsonId(String key) {
     String? jsonData = window.localStorage[key];
+    if(jsonData != null){
     return jsonData.toString();
+    }else{
+      return '';
+    }
   }
 
   Future<void> savePokemonInUserData(PokemonModel updatedPokemon, int userIndex,
@@ -157,4 +161,5 @@ class JsonSave {
       print("Erro: Nenhum dado de 'users_data' encontrado.");
     }
   }
+  
 }
