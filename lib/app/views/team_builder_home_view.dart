@@ -107,6 +107,7 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
           if (snapshot.hasData && snapshot.data != null) {
             PokemonTeamModel team = snapshot.data!;
             return FloatingActionButton(
+              backgroundColor: Colors.white,
               child: Icon(
                 Icons.dangerous,
                 color: Colors.red,

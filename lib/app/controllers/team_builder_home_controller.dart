@@ -206,7 +206,7 @@ class TeamBuilderHomeController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 71, 70, 71),
+          backgroundColor: Color.fromARGB(255, 175, 167, 175),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -225,6 +225,7 @@ class TeamBuilderHomeController {
               ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () async {
                 deleteTeam(context, userId, teamId);
               },

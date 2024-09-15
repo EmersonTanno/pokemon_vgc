@@ -46,7 +46,7 @@ class HomePageState extends State<HomePage> {
         },
       ),
       appBar: AppBar(
-        title: Text('PokéCenter'),
+        title: Center(child: Text('Pokémon VGC')),
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder<List<dynamic>>(
@@ -84,6 +84,7 @@ class HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         child: Icon(
           Icons.add,
           color: Colors.red,

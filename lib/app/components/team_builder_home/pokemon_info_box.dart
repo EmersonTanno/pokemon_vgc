@@ -32,7 +32,7 @@ class PokemonInfoBox extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 6,
                       child: Image.network(pokemon.image, fit: BoxFit.contain)),
                   Container(
-                    width: MediaQuery.of(context).size.width / 100,
+                    width: MediaQuery.of(context).size.width / 1000,
                     decoration: BoxDecoration(
                         border: Border(
                             right:
@@ -69,7 +69,7 @@ class PokemonInfoBox extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 10,
+                    width: MediaQuery.of(context).size.width / 50,
                     decoration: BoxDecoration(
                         border: Border(
                             right:

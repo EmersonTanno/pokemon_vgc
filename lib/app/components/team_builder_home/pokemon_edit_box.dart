@@ -76,7 +76,7 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height / 2.5,
+        height: MediaQuery.of(context).size.height / 3,
         width: MediaQuery.of(context).size.width,
         child: Card(
           shape: RoundedRectangleBorder(
@@ -100,7 +100,7 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                   ),
                   // Campo para alterar o nome do Pokémon
                   Container(
-                    width: widget.screenWidth / 2,
+                    width: widget.screenWidth / 3,
                     child: TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(
