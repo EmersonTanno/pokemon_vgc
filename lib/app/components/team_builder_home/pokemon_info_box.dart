@@ -43,6 +43,7 @@ class PokemonInfoBox extends StatelessWidget {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 100,
@@ -80,6 +81,7 @@ class PokemonInfoBox extends StatelessWidget {
                   ),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 100,
