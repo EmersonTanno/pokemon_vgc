@@ -122,9 +122,9 @@ class JsonSave {
 
   String returnJsonId(String key) {
     String? jsonData = window.localStorage[key];
-    if(jsonData != null){
-    return jsonData.toString();
-    }else{
+    if (jsonData != null) {
+      return jsonData.toString();
+    } else {
       return '';
     }
   }
@@ -147,7 +147,13 @@ class JsonSave {
         // Recuperar o time específico
         Map<String, dynamic> team = teams[teamIndex];
 
-        // Atualizar o Pokémon com os novos dados
+        updatedPokemon.name = _capitalizeFirstLetter(updatedPokemon.name);
+        updatedPokemon.move1 = _capitalizeFirstLetter(updatedPokemon.move1);
+        updatedPokemon.move2 = _capitalizeFirstLetter(updatedPokemon.move2);
+        updatedPokemon.move3 = _capitalizeFirstLetter(updatedPokemon.move3);
+        updatedPokemon.move4 = _capitalizeFirstLetter(updatedPokemon.move4);
+
+        // Atualizar o time com o Pokémon formatado
         team['pokemon${pokemonIndex}'] = updatedPokemon.toJson();
 
         // Salvar os dados atualizados de volta no localStorage
@@ -161,5 +167,10 @@ class JsonSave {
       print("Erro: Nenhum dado de 'users_data' encontrado.");
     }
   }
-  
+
+  // Função auxiliar para transformar a primeira letra em maiúscula
+  String _capitalizeFirstLetter(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1).toLowerCase();
+  }
 }

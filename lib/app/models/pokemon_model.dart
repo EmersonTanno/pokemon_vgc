@@ -1,5 +1,5 @@
 class PokemonModel {
-  final String name;
+  String name;
   final int lvl;
   final String nature;
   final String ability;
@@ -10,10 +10,10 @@ class PokemonModel {
   final int spd;
   final int spe;
   final String image;
-  final String move1;
-  final String move2;
-  final String move3;
-  final String move4;
+  String move1;
+  String move2;
+  String move3;
+  String move4;
 
   PokemonModel({
     required this.name,
