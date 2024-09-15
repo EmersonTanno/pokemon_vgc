@@ -46,7 +46,6 @@ class LoginPageController {
         PokemonTeamModel(
           1,
           'Kannon',
-          /*
           PokemonModel(
             name: 'Greninja',
             lvl: 50,
@@ -64,25 +63,6 @@ class LoginPageController {
             move2: 'Water Shuriken',
             move3: 'Dark Pulse',
             move4: 'Substitute',
-          ),
-          */
-          PokemonModel(
-            name: '',
-            lvl: 0,
-            nature: '',
-            ability: '',
-            hp: 0,
-            atk: 0,
-            def: 0,
-            spa: 0,
-            spd: 0,
-            spe: 0,
-            image:
-                '',
-            move1: '',
-            move2: '',
-            move3: '',
-            move4: '',
           ),
           PokemonModel(
             name: 'Archalodon',

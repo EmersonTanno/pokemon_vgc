@@ -35,22 +35,23 @@ class TeamBuilderHomeController {
   }
 
   Future<PokemonTeamModel?> loadTeamUpdate(int userId, int teamId) async {
-  JsonSave jsonSave = JsonSave();
-  Map<String, dynamic> jsonFileContent = await jsonSave.readJsonFromLocalStorage('users_data');
-  List<dynamic> usersList = jsonFileContent['users'] ?? [];
+    JsonSave jsonSave = JsonSave();
+    Map<String, dynamic> jsonFileContent =
+        await jsonSave.readJsonFromLocalStorage('users_data');
+    List<dynamic> usersList = jsonFileContent['users'] ?? [];
 
-  for (var user in usersList) {
-    if (user['id'] == userId) {
-      List<dynamic> teams = user['teams'] ?? [];
-      for (var team in teams) {
-        if (team['team_id'] == teamId) {
-          return PokemonTeamModel.fromJson(team);
+    for (var user in usersList) {
+      if (user['id'] == userId) {
+        List<dynamic> teams = user['teams'] ?? [];
+        for (var team in teams) {
+          if (team['team_id'] == teamId) {
+            return PokemonTeamModel.fromJson(team);
+          }
         }
       }
     }
+    return null;
   }
-  return null;
-}
 
   void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -93,84 +94,151 @@ class TeamBuilderHomeController {
     );
   }
 
-void editPokemon(BuildContext context, PokemonModel pokemon) {
-  final JsonSave jsonSave = JsonSave();
-  double screenWidth = MediaQuery.of(context).size.width;
+  void editPokemon(BuildContext context, PokemonModel pokemon) {
+    final JsonSave jsonSave = JsonSave();
+    double screenWidth = MediaQuery.of(context).size.width;
 
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Color.fromARGB(255, 71, 70, 71),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        title: Text(
-          pokemon.name,
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        content: PokemonEditBox(pokemon: pokemon, screenWidth: screenWidth),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              openPokemonDetails(context, pokemon);
-            },
-            child: Text(
-              'Voltar',
-              style: TextStyle(color: Colors.black),
-            ),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color.fromARGB(255, 71, 70, 71),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              // Carregar o time atual do localStorage
-              int userId = int.parse(jsonSave.returnJsonId('logged_user'));
-              int teamId = int.parse(jsonSave.returnJsonId('team_data'));
-              String updatedPokemon = jsonSave.returnJsonId('updated_pokemon');
-              Map<String, dynamic> pokemonData = jsonDecode(updatedPokemon);
-              PokemonModel pokemon2 = PokemonModel.fromJson(pokemonData);
-              int count = 0;
-              int pokemon_local = 0;
-
-              PokemonTeamModel? teamDataModel = await loadTeamUpdate(userId, teamId);
-
-              if (teamDataModel != null) {
-                List<PokemonModel> pokemonList = [
-                  teamDataModel.pokemon1,
-                  teamDataModel.pokemon2,
-                  teamDataModel.pokemon3,
-                  teamDataModel.pokemon4,
-                  teamDataModel.pokemon5,
-                  teamDataModel.pokemon6,
-                ];
-
-                // Atualizar o Pokémon na lista do time
-                for (var i = 0; i < pokemonList.length; i++) {
-                  count++;
-                  if (pokemonList[i].name == pokemon.name) {
-                    pokemonList[i] = pokemon2;
-                    pokemon_local = count;
-                    break;
-                  }
-                }  
-                await jsonSave.savePokemonInUserData(pokemon2, userId-1, teamId - 1, pokemon_local);
-
-                Navigator.of(context).pushReplacementNamed('/pokemonTeam');
-                
-              } else {
-                print("Erro: O time não foi encontrado.");
+          title: Text(
+            pokemon.name,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          content: PokemonEditBox(pokemon: pokemon, screenWidth: screenWidth),
+          actions: [
+            TextButton(
+              onPressed: () {
                 Navigator.of(context).pop();
-              }
-
-            },
-            child: Text(
-              'Salvar',
-              style: TextStyle(color: Colors.black),
+                openPokemonDetails(context, pokemon);
+              },
+              child: Text(
+                'Voltar',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-          ),
-        ],
+            ElevatedButton(
+              onPressed: () async {
+                // Carregar o time atual do localStorage
+                int userId = int.parse(jsonSave.returnJsonId('logged_user'));
+                int teamId = int.parse(jsonSave.returnJsonId('team_data'));
+                String updatedPokemon =
+                    jsonSave.returnJsonId('updated_pokemon');
+                Map<String, dynamic> pokemonData = jsonDecode(updatedPokemon);
+                PokemonModel pokemon2 = PokemonModel.fromJson(pokemonData);
+                int count = 0;
+                int pokemon_local = 0;
+
+                PokemonTeamModel? teamDataModel =
+                    await loadTeamUpdate(userId, teamId);
+
+                if (teamDataModel != null) {
+                  List<PokemonModel> pokemonList = [
+                    teamDataModel.pokemon1,
+                    teamDataModel.pokemon2,
+                    teamDataModel.pokemon3,
+                    teamDataModel.pokemon4,
+                    teamDataModel.pokemon5,
+                    teamDataModel.pokemon6,
+                  ];
+
+                  // Atualizar o Pokémon na lista do time
+                  for (var i = 0; i < pokemonList.length; i++) {
+                    count++;
+                    if (pokemonList[i].name == pokemon.name) {
+                      pokemonList[i] = pokemon2;
+                      pokemon_local = count;
+                      break;
+                    }
+                  }
+                  await jsonSave.savePokemonInUserData(
+                      pokemon2, userId - 1, teamId - 1, pokemon_local);
+
+                  Navigator.of(context).pushReplacementNamed('/pokemonTeam');
+                } else {
+                  print("Erro: O time não foi encontrado.");
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(
+                'Salvar',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> deleteTeam(BuildContext context, int userId, int teamId) async {
+    JsonSave jsonSave = JsonSave();
+    Map<String, dynamic> userData =
+        await jsonSave.readJsonFromLocalStorage('users_data');
+
+    List<dynamic> teams = userData['users'][userId - 1]['teams'];
+
+    if (teamId <= teams.length) {
+      teams.removeAt(teamId - 1);
+
+      userData['users'][userId - 1]['teams'] = teams;
+
+      await jsonSave.saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
+      Navigator.of(context).pushReplacementNamed('/home');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Time removido com sucesso!')),
       );
-    },
-  );
-}
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro: Time não encontrado.')),
+      );
+    }
+  }
+
+  void deleteDialog(
+      BuildContext context, String teamName, int userId, int teamId) {
+    final JsonSave jsonSave = JsonSave();
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color.fromARGB(255, 71, 70, 71),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Text(
+            'Deletar $teamName?',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Voltar',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                deleteTeam(context, userId, teamId);
+              },
+              child: Text(
+                'Deletar',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
