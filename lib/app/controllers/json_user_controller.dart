@@ -19,8 +19,8 @@ class JsonSave {
     }
   }
 
-  Future<void> saveIfEmpty(
-      UserModel user, UserModel user2, UserModel user3, String key, BuildContext context) async {
+  Future<void> saveIfEmpty(UserModel user, UserModel user2, UserModel user3,
+      String key, BuildContext context) async {
     String? jsonData = window.localStorage[key];
 
     if (jsonData == null || jsonData.isEmpty) {
@@ -37,7 +37,7 @@ class JsonSave {
       UserModel user, String key, BuildContext context) async {
     Map<String, dynamic> jsonFileContent = await readJsonFromLocalStorage(key);
 
-    List<dynamic> usersList = jsonFileContent['users'] ?? []; 
+    List<dynamic> usersList = jsonFileContent['users'] ?? [];
     // Verificar se já existe um usuário com o mesmo username ou email
     bool userExists = usersList.any((existingUser) =>
         existingUser['name'] == user.name ||
@@ -66,18 +66,18 @@ class JsonSave {
         password: user.password,
       );
 
-       // Adicionar o novo usuário à lista
+      // Adicionar o novo usuário à lista
       usersList.add(user.toJson());
 
-       // Atualizar o conteúdo do arquivo JSON
+      // Atualizar o conteúdo do arquivo JSON
       jsonFileContent['users'] = usersList;
 
-       // Salvar os dados atualizados no localStorage
+      // Salvar os dados atualizados no localStorage
       String updatedJsonData = jsonEncode(jsonFileContent);
       await saveJsonToLocalStorage(updatedJsonData, key);
 
       print('Usuário cadastrado com sucesso.');
-       ScaffoldMessenger.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Usuário Criado')),
       );
       Navigator.of(context).pushReplacementNamed('/');
@@ -120,43 +120,41 @@ class JsonSave {
     }
   }
 
-  String returnJsonId(String key){
+  String returnJsonId(String key) {
     String? jsonData = window.localStorage[key];
     return jsonData.toString();
   }
 
+  Future<void> savePokemonInUserData(PokemonModel updatedPokemon, int userIndex,
+      int teamIndex, int pokemonIndex) async {
+    // Recuperar os dados de 'user_data' do localStorage
+    String? userDataString =
+        returnJsonId('users_data'); // Corrigi o nome da chave
 
+    if (userDataString != null) {
+      // Decodificar os dados de 'user_data'
+      Map<String, dynamic> userData = jsonDecode(userDataString);
 
-  Future<void> savePokemonInUserData(
-    PokemonModel updatedPokemon, int userIndex, int teamIndex, int pokemonIndex) async {
-  // Recuperar os dados de 'user_data' do localStorage
-  String? userDataString = returnJsonId('users_data'); // Corrigi o nome da chave
+      // Acessar o time desejado usando teamIndex e o Pokémon usando pokemonIndex
+      List<dynamic> teams = userData['users'][userIndex]['teams'];
 
-  if (userDataString != null) {
-    // Decodificar os dados de 'user_data'
-    Map<String, dynamic> userData = jsonDecode(userDataString);
+      // Verificar se o índice de time e Pokémon existem
+      if (teamIndex < teams.length) {
+        // Recuperar o time específico
+        Map<String, dynamic> team = teams[teamIndex];
 
-    // Acessar o time desejado usando teamIndex e o Pokémon usando pokemonIndex
-    List<dynamic> teams = userData['users'][userIndex]['teams'];
+        // Atualizar o Pokémon com os novos dados
+        team['pokemon${pokemonIndex}'] = updatedPokemon.toJson();
 
-    // Verificar se o índice de time e Pokémon existem
-    if (teamIndex < teams.length) {
-      // Recuperar o time específico
-      Map<String, dynamic> team = teams[teamIndex];
+        // Salvar os dados atualizados de volta no localStorage
+        await saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
 
-      // Atualizar o Pokémon com os novos dados
-      team['pokemon${pokemonIndex}'] = updatedPokemon.toJson();
-
-      // Salvar os dados atualizados de volta no localStorage
-      await saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
-      
-      print("Pokémon atualizado com sucesso dentro do time.");
+        print("Pokémon atualizado com sucesso dentro do time.");
+      } else {
+        print("Erro: Índice de time ou Pokémon inválido.");
+      }
     } else {
-      print("Erro: Índice de time ou Pokémon inválido.");
+      print("Erro: Nenhum dado de 'users_data' encontrado.");
     }
-  } else {
-    print("Erro: Nenhum dado de 'users_data' encontrado.");
   }
-}
-
 }

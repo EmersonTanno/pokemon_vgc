@@ -90,7 +90,7 @@ class HomePageState extends State<HomePage> {
         ),
         onPressed: () {
           setState(() {
-            Navigator.of(context).pushReplacementNamed('/');
+            homePageController.createTeamAlert(context);
           });
         },
       ),
