@@ -114,6 +114,8 @@ class TeamBuilderHomeController {
         actions: [
           TextButton(
             onPressed: () {
+              String placeHolder = '';
+              jsonSave.saveJsonToLocalStorage(placeHolder, 'updated_pokemon');
               Navigator.of(context).pop();
               openPokemonDetails(context, pokemon);
             },
