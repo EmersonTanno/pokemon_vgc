@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/custom_drawer/custom_drawer.dart';
-import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_box/pokemon_box.dart';
+import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_box/pokemon_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/team_builder_home_controller.dart';

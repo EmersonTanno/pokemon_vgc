@@ -90,7 +90,7 @@ class HomePageState extends State<HomePage> {
         ),
         onPressed: () {
           setState(() {
-            teamsFuture = homePageController.loadTeams(userId);
+            Navigator.of(context).pushReplacementNamed('/');
           });
         },
       ),

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_edit_box.dart';
-import 'package:pokemon_vgc/app/components/pokemon_team_builder/pokemon_info_box.dart';
+import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_edit_box.dart';
+import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_info_box.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';

@@ -26,7 +26,11 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
   }
 
   Future<void> _fetchPokemonData(String pokemonName) async {
-    final response = await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$pokemonName'));
+    String pokemonNameUrl = 'pikachu';
+    if(pokemonName != ''){
+      pokemonNameUrl = pokemonName;
+    }
+    final response = await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$pokemonNameUrl'));
     
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -110,7 +114,9 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                   Container(
                     width: MediaQuery.of(context).size.width / 6,
                     height: MediaQuery.of(context).size.height / 6,
-                    child: Image.network(_pokemon.image, fit: BoxFit.contain),
+                    child: _pokemon.image.isNotEmpty
+                        ? Image.network(_pokemon.image, fit: BoxFit.contain)
+                        : Image.asset('assets/images/logo.png', fit: BoxFit.contain),
                   ),
                   Container(width: MediaQuery.of(context).size.width/100,
                   decoration: BoxDecoration(border: Border(right: BorderSide(color: Colors.black, width: 2.0))),),
