@@ -135,7 +135,7 @@ class JsonSave {
     String? userDataString =
         returnJsonId('users_data'); // Corrigi o nome da chave
 
-    if (userDataString != null) {
+    if (userDataString != '') {
       // Decodificar os dados de 'user_data'
       Map<String, dynamic> userData = jsonDecode(userDataString);
 

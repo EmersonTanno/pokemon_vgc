@@ -168,7 +168,9 @@ class TeamBuilderHomeController {
 
                 await jsonSave.savePokemonInUserData(
                     pokemon2, userId - 1, teamId - 1, pokemon_local);
-
+                //limpa o updated_pokemon
+                String placeHolder = '';
+                jsonSave.saveJsonToLocalStorage(placeHolder, 'updated_pokemon');
                 Navigator.of(context).pushReplacementNamed('/pokemonTeam');
               } else {
                 print("Erro: O time não foi encontrado.");
