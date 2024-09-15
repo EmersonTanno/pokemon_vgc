@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 
 class JsonSave {
@@ -123,4 +124,39 @@ class JsonSave {
     String? jsonData = window.localStorage[key];
     return jsonData.toString();
   }
+
+
+
+  Future<void> savePokemonInUserData(
+    PokemonModel updatedPokemon, int userIndex, int teamIndex, int pokemonIndex) async {
+  // Recuperar os dados de 'user_data' do localStorage
+  String? userDataString = returnJsonId('users_data'); // Corrigi o nome da chave
+
+  if (userDataString != null) {
+    // Decodificar os dados de 'user_data'
+    Map<String, dynamic> userData = jsonDecode(userDataString);
+
+    // Acessar o time desejado usando teamIndex e o Pokémon usando pokemonIndex
+    List<dynamic> teams = userData['users'][userIndex]['teams'];
+
+    // Verificar se o índice de time e Pokémon existem
+    if (teamIndex < teams.length) {
+      // Recuperar o time específico
+      Map<String, dynamic> team = teams[teamIndex];
+
+      // Atualizar o Pokémon com os novos dados
+      team['pokemon${pokemonIndex}'] = updatedPokemon.toJson();
+
+      // Salvar os dados atualizados de volta no localStorage
+      await saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
+      
+      print("Pokémon atualizado com sucesso dentro do time.");
+    } else {
+      print("Erro: Índice de time ou Pokémon inválido.");
+    }
+  } else {
+    print("Erro: Nenhum dado de 'users_data' encontrado.");
+  }
+}
+
 }

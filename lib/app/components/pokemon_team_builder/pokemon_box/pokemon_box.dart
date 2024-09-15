@@ -59,9 +59,15 @@ class PokemonBox extends StatelessWidget {
       return Container(
       width: screenWidth - 50,
       height: screenWidth / 4,
-      child: Card(
-        color: const Color.fromARGB(255, 175, 175, 175),
-        child: Center(child: Text('Espaço Vazio'),)
+      child: InkWell(
+        onTap: (){
+          //posso chamar aqui a função de criar o pokemon
+          teamBuilderHomeController.openPokemonDetails(context, pokemon);
+        },
+        child: Card(
+          color: const Color.fromARGB(255, 175, 175, 175),
+          child: Center(child: Text('Espaço Vazio'),)
+        ),
       ),
     );
     }

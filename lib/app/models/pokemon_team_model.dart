@@ -48,4 +48,5 @@ class PokemonTeamModel {
       PokemonModel.fromJson(json['pokemon6']),
     );
   }
+
 }
