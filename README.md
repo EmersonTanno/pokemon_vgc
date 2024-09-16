@@ -35,7 +35,7 @@ O projeto utiliza os seguintes pacotes principais:
 
 ## Como rodar o projeto
 1. Certifique-se de ter o Flutter SDK instalado em sua máquina.
-2. Clone o repositório: git clone https://github.com/seu-usuario/pokemon_vgc.git
+2. Clone o repositório: git clone [https://github.com/seu-usuario/pokemon_vgc.git](https://github.com/EmersonTanno/pokemon_vgc.git)
 3. Navegue até o diretório do projeto: cd pokemon_vgc
 4. Instale as dependências: flutter pub get
 5. Execute o aplicativo: flutter run
