@@ -1,6 +1,6 @@
-# pokemon_vgc
+# Pokémon VGC Team Builder
 
-A new Flutter project.
+Este projeto é um aplicativo de Flutter que permite aos usuários criar e gerenciar times de Pokémon para competições VGC (Video Game Championships). A aplicação inclui funcionalidades como gerenciamento de times, visualização e edição de Pokémon.
 
 ## Getting Started
 
