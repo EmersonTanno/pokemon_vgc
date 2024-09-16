@@ -15,21 +15,28 @@ Este projeto é um aplicativo de Flutter que permite aos usuários criar e geren
 
 Se não quiser criar um novo usuário, clique na Pokébola na página de login. Isso criará automaticamente três usuários com as seguintes credenciais:
 
-Usuário: Kannon
+- Usuário: Kannon
 Senha: 123
 
-Usuário: Seraph
+- Usuário: Seraph
 Senha: 123
 
-Usuário: Ash Ketchum
+- Usuário: Ash Ketchum
 Senha: pikachu
 
 
-A few resources to get you started if this is your first Flutter project:
+## Dependências
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+O projeto utiliza os seguintes pacotes principais:
+- flutter
+- flutter_local_storage: para armazenamento de dados local em JSON.
+- provider: para gerenciamento de estado.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Como rodar o projeto
+1. Certifique-se de ter o Flutter SDK instalado em sua máquina.
+2. Clone o repositório: git clone https://github.com/seu-usuario/pokemon_vgc.git
+3. Navegue até o diretório do projeto: cd pokemon_vgc
+4. Instale as dependências: flutter pub get
+5. Execute o aplicativo: flutter run
+
