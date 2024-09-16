@@ -109,7 +109,7 @@ class PokemonInfoBox extends StatelessWidget {
       ));
     }else{
       return Container(
-        child: Text('Adicione adição de Pokemon'),
+        child: Text('Adicione um Pokémon'),
       );
     }
   }
