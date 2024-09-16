@@ -15,8 +15,11 @@ class LoginPageController {
     List<dynamic> usersList = jsonFileContent['users'] ?? [];
 
     bool userFound = false;
+
     for (var user in usersList) {
-      if (user['name'] == username && user['password'] == password) {
+      if (user['name'].toString().replaceAll(RegExp(r'\s+$'), '') ==
+              username.replaceAll(RegExp(r'\s+$'), '') &&
+          user['password'] == password) {
         userFound = true;
         jsonSave.saveJsonToLocalStorage(user['id'].toString(), 'logged_user');
         Navigator.of(context).pushReplacementNamed('/home');
@@ -25,7 +28,6 @@ class LoginPageController {
     }
 
     if (!userFound) {
-      //print('Login negado: username ou senha incorretos.');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Username ou senha incorretos')),
       );
