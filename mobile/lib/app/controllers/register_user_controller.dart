@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/app/service/user_service.dart';
 
 class RegisterUserController {
   JsonSave jsonSave = JsonSave();
 
   Future<void> registerUser(String username, String email, String password, BuildContext context) async {
 
-    UserModel user = UserModel(
-      id: 0, 
-      name: username,
-      email: email,
-      password: password,
-    );
+    UserService userService = UserService();
+    bool validUser = true;
+    int _id = 0;
 
-    await jsonSave.addUserToLocalStorage(user, 'users_data', context);
-    //printUsers();
+    var existingUsers = await userService.getUsers();
+
+    for(UserModel user in existingUsers){
+      if(username == user.name || email == user.email){
+        validUser = false;
+      }
+      _id = user.id;
+    }
+
+    if(validUser == false){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Usuário ou Email já cadastrados')),
+      );
+    }else {
+      userService.createUser(_id+1, username, email, password);
+    }
   }
 
   void printUsers() {

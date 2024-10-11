@@ -112,10 +112,12 @@ class HomePageController {
     List<dynamic> teams = userData['users'][userId - 1]['teams'];
 
     int newTeamId = teams.length + 1;
+    int teamUserId = userId;
 
     // Criar um novo time vazio
     PokemonTeamModel newTeam = PokemonTeamModel(
       newTeamId,
+      teamUserId,
       teamName,
       PokemonModel(
           name: '',

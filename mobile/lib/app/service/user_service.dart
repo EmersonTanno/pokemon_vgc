@@ -31,6 +31,23 @@ class UserService {
     }
   }
 
+  Future<UserModel?> getUserByName(String name) async {
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      List<dynamic> usersJson = json.decode(response.body);
+
+      for (var userJson in usersJson) {
+        UserModel user = UserModel.fromJson(userJson);
+        if (user.name == name) {
+          return user;
+        }
+      }
+      return null; 
+    } else {
+      throw Exception('Falha ao carregar usuários');
+    }
+  }
 
   Future<void> createUser(int id, String name, String email, String password) async{
     var response = await http.post(Uri.parse(url),

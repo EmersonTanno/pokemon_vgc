@@ -1,36 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
-import 'package:pokemon_vgc/app/models/pokemon_model.dart';
-import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
-import 'package:pokemon_vgc/app/models/user_model.dart';
 import 'package:pokemon_vgc/app/service/user_service.dart';
 
 class LoginPageController {
   Future<void> login(
       String username, String password, BuildContext context) async {
-    JsonSave jsonSave = JsonSave();
+    UserService userService = UserService();
 
-    Map<String, dynamic> jsonFileContent =
-        await jsonSave.readJsonFromLocalStorage('users_data');
+  print(username);
 
-    List<dynamic> usersList = jsonFileContent['users'] ?? [];
+    var user = await userService.getUserByName(username);
 
-    bool userFound = false;
-
-    for (var user in usersList) {
-      if (user['name'].toString().replaceAll(RegExp(r'\s+$'), '') ==
-              username.replaceAll(RegExp(r'\s+$'), '') &&
-          user['password'] == password) {
-        userFound = true;
-        jsonSave.saveJsonToLocalStorage(user['id'].toString(), 'logged_user');
-        Navigator.of(context).pushReplacementNamed('/home');
-        break;
-      }
-    }
-
-    if (!userFound) {
+    if(user?.name == username && user?.password == password){
+      //jsonSave.saveJsonToLocalStorage((user?.id).toString(), 'logged_user');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Username ou senha incorretos')),
+        SnackBar(content: Text('Sucesso')),
+      );
+      //Navigator.of(context).pushReplacementNamed('/home');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Usuário ou senha incorretos')),
       );
     }
   }
@@ -38,7 +26,7 @@ class LoginPageController {
   void register(BuildContext context) {
     Navigator.of(context).pushReplacementNamed('/register');
   }
-
+/*
   UserModel createUser() {
     return UserModel(
       id: 0, // O ID será ajustado automaticamente pela função
@@ -974,4 +962,6 @@ class LoginPageController {
       ],
     );
   }
+  */
 }
+

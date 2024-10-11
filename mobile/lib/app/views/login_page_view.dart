@@ -37,26 +37,12 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: GestureDetector(
-                  onTap: () async {
-                    // Cria um usuário fictício
-                    UserModel user = loginPageController.createUser();
-                    UserModel user2 = loginPageController.createUser2();
-                    UserModel user3 = loginPageController.createUser3();
-
-                    // Chama a função para salvar o usuário se o localStorage estiver vazio
-                    await jsonSave.saveIfEmpty(user, user2, user3, 'users_data', context);
-                    jsonSave.printLocalStorage('users_data');
-
-
-                  },
                   child: Container(
                     width: 200,
                     height: 200,
                     child: Image.asset('assets/images/logo.png'),
                   ),
                 ),
-              ),
               Container(
                 height: 20,
               ),
