@@ -3,7 +3,9 @@ import 'package:pokemon_vgc/app/components/custom_drawer/custom_drawer.dart';
 import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 import 'package:pokemon_vgc/main.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  late Future<List<dynamic>> teamsFuture;
+  late Future<List<PokemonTeamModel>> teamsFuture;
   late int userId;
   late Future<UserModel> userData;
   final HomePageController homePageController = HomePageController();
@@ -26,6 +28,8 @@ class HomePageState extends State<HomePage> {
     userId = loggedUser;
     userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
+
+    print(userId);
   }
 
   @override
@@ -50,7 +54,7 @@ class HomePageState extends State<HomePage> {
         title: Center(child: Text('Pokémon VGC')),
         backgroundColor: Colors.red,
       ),
-      body: FutureBuilder<List<dynamic>>(
+      body: FutureBuilder<List<PokemonTeamModel>>(
         future: teamsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -61,7 +65,8 @@ class HomePageState extends State<HomePage> {
             return Center(child: Text('Nenhum time encontrado'));
           }
 
-          List<dynamic> teams = snapshot.data!;
+          List<PokemonTeamModel> teams = snapshot.data!;
+          print(teamsFuture);
 
           return Container(
             height: double.infinity,

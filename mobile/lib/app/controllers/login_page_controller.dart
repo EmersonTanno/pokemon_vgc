@@ -10,10 +10,6 @@ class LoginPageController {
     var user = await userService.getUserByName(username);
 
     if(user?.name == username && user?.password == password){
-      //jsonSave.saveJsonToLocalStorage((user?.id).toString(), 'logged_user');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Sucesso')),
-      );
       loggedUser = user!.id;
       Navigator.of(context).pushReplacementNamed('/home');
     } else {

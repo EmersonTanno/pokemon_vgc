@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 
 class TeamBox extends StatelessWidget {
-  final dynamic teamData; 
+  final PokemonTeamModel teamData; 
   final HomePageController homePageController = HomePageController();
 
   TeamBox({super.key, required this.teamData});
@@ -11,7 +12,7 @@ class TeamBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        homePageController.selectTeam(context, teamData['team_id']);
+        homePageController.selectTeam(context, teamData.team_id);
       },
       child: Card(
         color: Color.fromARGB(255, 175, 175, 175),
@@ -32,7 +33,7 @@ class TeamBox extends StatelessWidget {
                   flex: 2,
                   child: Column(
                     children: [
-                      Expanded(flex: 9, child: Text('${teamData['team_name'] ?? 'Unknown'}')),
+                      Expanded(flex: 9, child: Text('${teamData.team_name ?? 'Unknown'}')),
                       Expanded(
                         flex: 1,
                         child: Divider(
@@ -47,7 +48,7 @@ class TeamBox extends StatelessWidget {
                   flex: 8,
                   child: Row(
                     children: [
-                      if(teamData['pokemon1']['name'] != '')
+                      if(teamData.pokemon1.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -61,7 +62,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon1']['image']}',
+                                  '${teamData.pokemon1.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -69,7 +70,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData['pokemon2']['name'] != '')
+                      if(teamData.pokemon2.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -83,7 +84,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon2']['image']}',
+                                  '${teamData.pokemon2.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -91,7 +92,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData['pokemon3']['name'] != '')
+                      if(teamData.pokemon3.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -105,7 +106,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon3']['image']}',
+                                  '${teamData.pokemon3.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -113,7 +114,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData['pokemon4']['name'] != '')
+                      if(teamData.pokemon4.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -127,7 +128,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon4']['image']}',
+                                  '${teamData.pokemon4.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -135,7 +136,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData['pokemon5']['name'] != '')
+                      if(teamData.pokemon5.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -149,7 +150,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon5']['image']}',
+                                  '${teamData.pokemon5.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -157,7 +158,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData['pokemon6']['name'] != '')
+                      if(teamData.pokemon6.name != '')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -171,7 +172,7 @@ class TeamBox extends StatelessWidget {
                               ),
                               Positioned.fill(
                                 child: Image.network(
-                                  '${teamData['pokemon6']['image']}',
+                                  '${teamData.pokemon6.image}',
                                   fit: BoxFit.contain,
                                 ),
                               ),

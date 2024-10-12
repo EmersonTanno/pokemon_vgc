@@ -10,9 +10,9 @@ import 'package:pokemon_vgc/app/service/user_service.dart';
 import 'package:pokemon_vgc/main.dart';
 
 class HomePageController {
-  Future<List<dynamic>> loadTeams(int userId) async {
+  Future<List<PokemonTeamModel>> loadTeams(int userId) async {
     PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
-    List<dynamic> teams = await pokemonTeamsService.getTeamsByUserId(loggedUser);
+    List<PokemonTeamModel> teams = await pokemonTeamsService.getTeamsByUserId(loggedUser);
 
     return teams;
   }
