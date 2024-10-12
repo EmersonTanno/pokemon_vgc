@@ -41,7 +41,7 @@ class PokemonTeamModel {
   // Método fromJson para desserializar o time de JSON
   factory PokemonTeamModel.fromJson(Map<String, dynamic> json) {
     return PokemonTeamModel(
-      id: json['id'], 
+      id: int.parse(json['id']), 
       user_id: json['user_id'], 
       team_name: json['team_name'],
       pokemon1: PokemonModel.fromJson(json['pokemon1']),
