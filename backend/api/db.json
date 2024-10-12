@@ -11,11 +11,17 @@
       "name": "Seraph",
       "email": "seraph@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "3",
+      "name": "Dustopia",
+      "email": "123",
+      "password": "123"
     }
   ],
   "teams": [
     {
-      "id": 1,
+      "id": "1",
       "user_id": 1,
       "team_name": "Violet",
       "pokemon1": {
@@ -122,7 +128,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "user_id": 1,
       "team_name": "Kalos",
       "pokemon1": {
@@ -229,7 +235,7 @@
       }
     },
     {
-      "id": 3,
+      "id": "3",
       "user_id": 2,
       "team_name": "Eevee",
       "pokemon1": {

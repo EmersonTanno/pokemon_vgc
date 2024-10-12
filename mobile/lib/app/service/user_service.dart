@@ -27,7 +27,7 @@ class UserService {
       UserModel user = UserModel.fromJson(json);
       return user;
     } else {
-      throw Exception('Failed to load user');
+      throw Exception('Failed to load user ${response.statusCode}');
     }
   }
 
@@ -51,7 +51,7 @@ class UserService {
 
   Future<void> createUser(int id, String name, String email, String password) async{
     var response = await http.post(Uri.parse(url),
-      body: jsonEncode({"id": id, "name": name, "email": email, "password": password}));
+      body: jsonEncode({"id": id.toString(), "name": name, "email": email, "password": password}));
     if (response.statusCode == 201){
       print('User created successfully');
     } else {

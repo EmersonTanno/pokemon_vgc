@@ -79,11 +79,26 @@ class PokemonTeamsService{
     );
     
     var response = await http.post(Uri.parse(url),
-      body: jsonEncode({"id": id+1, "user_id": loggedUser, "team_name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
+      body: jsonEncode({"id": (id+1).toString(), "user_id": loggedUser, "team_name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
     if (response.statusCode == 201){
       print('Team created successfully');
     } else {
       throw Exception('Failed to create team');
+    }
+  }
+
+
+  Future<void> deleteTeam(int id) async{
+    var response = await http.delete(Uri.parse('$url/${id.toString()}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if(response.statusCode ==200) {
+      print('Team deleted successfully');
+    } else {
+      throw Exception('Failed to delete team ${response.statusCode}');
     }
   }
 

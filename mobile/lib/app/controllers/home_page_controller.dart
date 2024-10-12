@@ -74,10 +74,8 @@ class HomePageController {
                 if (teamName.isNotEmpty) {
                   pokemonTeamsService.createTeam(teamName);
                 }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Time criado com sucesso!')),
-                );
                 Navigator.of(context).pop();
+                Navigator.of(context).pushReplacementNamed('/home');
               },
               child: Text('Salvar'),
             ),
