@@ -28,8 +28,6 @@ class HomePageState extends State<HomePage> {
     userId = loggedUser;
     userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
-
-    print(userId);
   }
 
   @override
@@ -66,7 +64,7 @@ class HomePageState extends State<HomePage> {
           }
 
           List<PokemonTeamModel> teams = snapshot.data!;
-          print(teamsFuture);
+          print(teams);
 
           return Container(
             height: double.infinity,

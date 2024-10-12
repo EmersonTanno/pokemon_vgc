@@ -22,7 +22,7 @@ class TeamBuilderHomeController {
         List<dynamic> teams = user['teams'] ?? [];
 
         for (var team in teams) {
-          if (team['team_id'] == teamId) {
+          if (team['id'] == teamId) {
             pokemonTeam = PokemonTeamModel.fromJson(team);
             break;
           }
@@ -44,7 +44,7 @@ class TeamBuilderHomeController {
       if (user['id'] == userId) {
         List<dynamic> teams = user['teams'] ?? [];
         for (var team in teams) {
-          if (team['team_id'] == teamId) {
+          if (team['id'] == teamId) {
             return PokemonTeamModel.fromJson(team);
           }
         }

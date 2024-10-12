@@ -27,14 +27,17 @@ class HomePageController {
   }
 
   void selectTeam(BuildContext context, int team_id) {
-    JsonSave jsonSave = JsonSave();
+    //JsonSave jsonSave = JsonSave();
 
-    jsonSave.saveJsonToLocalStorage(team_id.toString(), 'team_data');
-    Navigator.of(context).pushReplacementNamed('/pokemonTeam');
+    selectedTeam = team_id;
+    print(selectedTeam);
+    //jsonSave.saveJsonToLocalStorage(team_id.toString(), 'team_data');
+    //Navigator.of(context).pushReplacementNamed('/pokemonTeam');
   }
 
   void createTeamAlert(BuildContext context) {
     TextEditingController teamNameController = TextEditingController();
+    PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
 
     showDialog(
       context: context,
@@ -69,8 +72,11 @@ class HomePageController {
               onPressed: () {
                 String teamName = teamNameController.text;
                 if (teamName.isNotEmpty) {
-                  createEmptyTeam(context, teamName);
+                  pokemonTeamsService.createTeam(teamName);
                 }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Time criado com sucesso!')),
+                );
                 Navigator.of(context).pop();
               },
               child: Text('Salvar'),
@@ -81,131 +87,5 @@ class HomePageController {
     );
   }
 
-  Future<void> createEmptyTeam(BuildContext context, String teamName) async {
-    final JsonSave jsonSave = JsonSave();
-    int userId = int.parse(jsonSave.returnJsonId('logged_user'));
 
-    Map<String, dynamic> userData =
-        await jsonSave.readJsonFromLocalStorage('users_data');
-
-    List<dynamic> teams = userData['users'][userId - 1]['teams'];
-
-    int newTeamId = teams.length + 1;
-    int teamUserId = userId;
-
-    // Criar um novo time vazio
-    PokemonTeamModel newTeam = PokemonTeamModel(
-      newTeamId,
-      teamUserId,
-      teamName,
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-      PokemonModel(
-          name: '',
-          lvl: 0,
-          nature: '',
-          ability: '',
-          hp: 0,
-          atk: 0,
-          def: 0,
-          spa: 0,
-          spd: 0,
-          spe: 0,
-          image: '',
-          move1: '',
-          move2: '',
-          move3: '',
-          move4: ''),
-    );
-
-    // Adicionar o novo time à lista de times do usuário
-    teams.add(newTeam.toJson());
-
-    // Salvar os dados atualizados de volta no localStorage
-    await jsonSave.saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Time criado com sucesso!')),
-    );
-
-    selectTeam(context, newTeamId);
-  }
 }

@@ -34,7 +34,6 @@ class UserModel {
       name: json['name'],
       email: json['email'],
       password: json['password'],
-     // teams: (json['teams'] as List).map((team) => PokemonTeamModel.fromJson(team)).toList(),
     );
   }
 }

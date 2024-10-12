@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
+import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'dart:convert';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
+import 'package:pokemon_vgc/main.dart';
 
 class PokemonTeamsService{
   final String url = 'http://localhost:3000/teams';
@@ -11,12 +13,15 @@ class PokemonTeamsService{
 
     if (response.statusCode == 200) {
       List<dynamic> jsonList = jsonDecode(response.body);
-      List<PokemonTeamModel> teams = jsonList.map((json) => PokemonTeamModel.fromJson(json)).toList();
+      List<PokemonTeamModel> teams = jsonList
+          .map((json) => PokemonTeamModel.fromJson(json))
+          .toList();
       return teams;
     } else {
-      throw Exception('Failed to load teams ${response.statusCode}');
+      throw Exception('Failed to load teams');
     }
   }
+
 
 
   Future<List<PokemonTeamModel>> getTeamsByUserId(int userId) async {
@@ -34,7 +39,58 @@ class PokemonTeamsService{
 
       return usersTeams;
     } else {
-      throw Exception('Falha ao carregar times');
+      throw Exception('Failed to load teams');
+    }
+  }
+
+  Future<PokemonTeamModel> getTeamById(int teamId) async {
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      List<dynamic> existingTeams = json.decode(response.body);
+
+      for (var team in existingTeams) {
+        if (team['id'] == teamId) {
+          return PokemonTeamModel.fromJson(team);
+        }
+      }
+      throw Exception('Failed to find team');
+    } else {
+      throw Exception('Failed to find team');
+    }
+  }
+
+  Future<void> createTeam(String teamName) async {
+    List<PokemonTeamModel> teams = await getTeams();
+    int id = 0;
+    for (var team in teams) {
+      id = team.id;
+    }
+
+    PokemonModel pokemon = PokemonModel(
+      name: '-',
+      lvl: 0,
+      nature: '-',
+      ability: '-',
+      hp: 0,
+      atk: 0,
+      def: 0,
+      spa: 0,
+      spd: 0,
+      spe: 0,
+      image: '-',
+      move1: '-',
+      move2: '-',
+      move3: '-',
+      move4: '-'
+    );
+    
+    var response = await http.post(Uri.parse(url),
+      body: jsonEncode({"id": id+1, "user_id": loggedUser, "team-name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
+    if (response.statusCode == 201){
+      print('Team created successfully');
+    } else {
+      throw Exception('Failed to create team');
     }
   }
 

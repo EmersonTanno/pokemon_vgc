@@ -15,7 +15,7 @@
   ],
   "teams": [
     {
-      "team_id": 1,
+      "id": 1,
       "user_id": 1,
       "team_name": "Violet",
       "pokemon1": {
@@ -122,7 +122,7 @@
         }
     },
     {
-      "team_id": 2,
+      "id": 2,
       "user_id": 1,
       "team_name": "Kalos",
       "pokemon1": {
@@ -230,7 +230,7 @@
       
     },
     {
-      "team_id": 3,
+      "id": 3,
       "user_id": 2,
       "team_name": "Eevee",
       "pokemon1": {
@@ -335,7 +335,6 @@
           "spe": 110,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png"
         }
-      
     }
   ]
 }

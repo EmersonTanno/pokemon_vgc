@@ -12,7 +12,7 @@ class TeamBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        homePageController.selectTeam(context, teamData.team_id);
+        homePageController.selectTeam(context, teamData.id);
       },
       child: Card(
         color: Color.fromARGB(255, 175, 175, 175),
@@ -48,7 +48,7 @@ class TeamBox extends StatelessWidget {
                   flex: 8,
                   child: Row(
                     children: [
-                      if(teamData.pokemon1.name != '')
+                      if(teamData.pokemon1.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -70,7 +70,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData.pokemon2.name != '')
+                      if(teamData.pokemon2.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -92,7 +92,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData.pokemon3.name != '')
+                      if(teamData.pokemon3.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -114,7 +114,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData.pokemon4.name != '')
+                      if(teamData.pokemon4.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -136,7 +136,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData.pokemon5.name != '')
+                      if(teamData.pokemon5.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
@@ -158,7 +158,7 @@ class TeamBox extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if(teamData.pokemon6.name != '')
+                      if(teamData.pokemon6.name != '-')
                       Expanded(
                         flex: 1,
                         child: Container(
