@@ -18,8 +18,7 @@
       "team_id": 1,
       "user_id": 1,
       "team_name": "Violet",
-      "pokemons": [
-        {
+      "pokemon1": {
           "move1": "Bitter Blade",
           "move2": "Shadow Sneak",
           "move3": "Close Combat",
@@ -36,7 +35,7 @@
           "spe": 85,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png"
         },
-        {
+        "pokemon2": {
           "move1": "Flower Trick",
           "move2": "Knock Off",
           "move3": "Play Rough",
@@ -53,7 +52,7 @@
           "spe": 123,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png"
         },
-        {
+        "pokemon3": {
           "move1": "Stone Edge",
           "move2": "Accelerock",
           "move3": "Swords Dance",
@@ -70,7 +69,7 @@
           "spe": 110,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10152.png"
         },
-        {
+        "pokemon4": {
           "move1": "Close Combat",
           "move2": "Meteor Mash",
           "move3": "Extreme Speed",
@@ -87,7 +86,7 @@
           "spe": 90,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png"
         },
-        {
+        "pokemon5": {
           "move1": "Hyper Voice",
           "move2": "Mystical Fire",
           "move3": "Protect",
@@ -104,7 +103,7 @@
           "spe": 60,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
         },
-        {
+        "pokemon6": {
           "move1": "Dragon Claw",
           "move2": "Earthquake",
           "move3": "Iron Tail",
@@ -121,14 +120,12 @@
           "spe": 97,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/612.png"
         }
-      ]
     },
     {
       "team_id": 2,
       "user_id": 1,
       "team_name": "Kalos",
-      "pokemons": [
-        {
+      "pokemon1": {
           "move1": "Hydro Pump",
           "move2": "Dark Pulse",
           "move3": "Ice Beam",
@@ -145,7 +142,7 @@
           "spe": 122,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png"
         },
-        {
+        "pokemon2": {
           "move1": "Outrage",
           "move2": "Earthquake",
           "move3": "Poison Jab",
@@ -162,7 +159,7 @@
           "spe": 97,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/612.png"
         },
-        {
+        "pokemon3": {
           "move1": "Close Combat",
           "move2": "Extreme Speed",
           "move3": "Bullet Punch",
@@ -179,7 +176,7 @@
           "spe": 90,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png"
         },
-        {
+        "pokemon4": {
           "move1": "Flamethrower",
           "move2": "Air Slash",
           "move3": "Dragon Pulse",
@@ -196,7 +193,7 @@
           "spe": 100,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
         },
-        {
+        "pokemon5": {
           "move1": "Freeze-Dry",
           "move2": "Hyper Voice",
           "move3": "Ancient Power",
@@ -213,7 +210,7 @@
           "spe": 58,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/699.png"
         },
-        {
+        "pokemon6": {
           "move1": "Psychic",
           "move2": "Moonblast",
           "move3": "Shadow Ball",
@@ -230,14 +227,13 @@
           "spe": 80,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png"
         }
-      ]
+      
     },
     {
       "team_id": 3,
       "user_id": 2,
       "team_name": "Eevee",
-      "pokemons": [
-        {
+      "pokemon1": {
           "move1": "Foul Play",
           "move2": "Toxic",
           "move3": "Wish",
@@ -254,7 +250,7 @@
           "spe": 65,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png"
         },
-        {
+        "pokemon2": {
           "move1": "Hyper Voice",
           "move2": "Shadow Ball",
           "move3": "Mystical Fire",
@@ -271,7 +267,7 @@
           "spe": 60,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
         },
-        {
+        "pokemon3": {
           "move1": "Earthquake",
           "move2": "Outrage",
           "move3": "Toxic",
@@ -288,7 +284,7 @@
           "spe": 97,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/612.png"
         },
-        {
+        "pokemon4": {
           "move1": "Psychic",
           "move2": "Moonblast",
           "move3": "Shadow Ball",
@@ -305,7 +301,7 @@
           "spe": 80,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png"
         },
-        {
+        "pokemon5": {
           "move1": "Fire Blast",
           "move2": "Solar Beam",
           "move3": "Earth Power",
@@ -322,7 +318,7 @@
           "spe": 65,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png"
         },
-        {
+        "pokemon6": {
           "move1": "Aura Sphere",
           "move2": "Calm Mind",
           "move3": "Moonblast",
@@ -339,7 +335,7 @@
           "spe": 110,
           "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png"
         }
-      ]
+      
     }
   ]
 }

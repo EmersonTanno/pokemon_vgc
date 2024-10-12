@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/login_page/button_login_page.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/login_page_controller.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 import 'package:pokemon_vgc/app/service/user_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,12 +39,25 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
+                child: GestureDetector(
+                  onTap: () async {
+                    PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
+                    List<PokemonTeamModel>teams = await pokemonTeamsService.getTeamsByUserId(1);
+                    for(PokemonTeamModel team in teams){
+                      print(team.team_id);
+                      print(team.team_name);
+                      print(team.user_id);
+                      print('================================');
+                    }
+                    
+                  },
                   child: Container(
                     width: 200,
                     height: 200,
                     child: Image.asset('assets/images/logo.png'),
                   ),
                 ),
+              ),
               Container(
                 height: 20,
               ),

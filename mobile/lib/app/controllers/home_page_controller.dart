@@ -5,44 +5,23 @@ import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
+import 'package:pokemon_vgc/app/service/user_service.dart';
+import 'package:pokemon_vgc/main.dart';
 
 class HomePageController {
   Future<List<dynamic>> loadTeams(int userId) async {
-    JsonSave jsonSave = JsonSave();
-    List<dynamic> teams = [];
-
-    Map<String, dynamic> jsonFileContent =
-        await jsonSave.readJsonFromLocalStorage('users_data');
-    List<dynamic> usersList = jsonFileContent['users'] ?? [];
-
-    for (var user in usersList) {
-      if (user['id'] == userId) {
-        teams = user['teams'] ?? [];
-        break;
-      }
-    }
+    PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
+    List<dynamic> teams = await pokemonTeamsService.getTeamsByUserId(loggedUser);
 
     return teams;
   }
 
   Future<UserModel> getUserInfo(int userId) async {
-    JsonSave jsonSave = JsonSave();
+    UserService userService = UserService();
     late UserModel user;
 
-    Map<String, dynamic> jsonFileContent =
-        await jsonSave.readJsonFromLocalStorage('users_data');
-    List<dynamic> usersList = jsonFileContent['users'] ?? [];
-
-    for (var users in usersList) {
-      if (users['id'] == userId) {
-        user = UserModel(
-            id: users['id'],
-            name: users['name'],
-            email: users['email'],
-            password: users['password']);
-        break;
-      }
-    }
+    user = await userService.getUserById(loggedUser);
 
     return user;
   }

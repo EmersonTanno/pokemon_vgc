@@ -4,6 +4,7 @@ import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    userId = int.parse(jsonSave.returnJsonId('logged_user'));
+    userId = loggedUser;
     userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
   }

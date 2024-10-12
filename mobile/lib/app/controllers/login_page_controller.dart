@@ -7,8 +7,6 @@ class LoginPageController {
       String username, String password, BuildContext context) async {
     UserService userService = UserService();
 
-  print(username);
-
     var user = await userService.getUserByName(username);
 
     if(user?.name == username && user?.password == password){
@@ -16,8 +14,8 @@ class LoginPageController {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Sucesso')),
       );
-      //Navigator.of(context).pushReplacementNamed('/home');
       loggedUser = user!.id;
+      Navigator.of(context).pushReplacementNamed('/home');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Usuário ou senha incorretos')),
