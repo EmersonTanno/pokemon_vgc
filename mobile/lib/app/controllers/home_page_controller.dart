@@ -26,13 +26,9 @@ class HomePageController {
     return user;
   }
 
-  void selectTeam(BuildContext context, int team_id) {
-    //JsonSave jsonSave = JsonSave();
-
-    selectedTeam = team_id;
-    print(selectedTeam);
-    //jsonSave.saveJsonToLocalStorage(team_id.toString(), 'team_data');
-    //Navigator.of(context).pushReplacementNamed('/pokemonTeam');
+  void selectTeam(BuildContext context, PokemonTeamModel team) {
+    print(team.pokemon1.name);
+    Navigator.of(context).pushReplacementNamed('/pokemonTeam', arguments: team);
   }
 
   void createTeamAlert(BuildContext context) {

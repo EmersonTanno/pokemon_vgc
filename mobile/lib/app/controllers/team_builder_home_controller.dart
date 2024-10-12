@@ -6,34 +6,12 @@ import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_info_box.da
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
+import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 
 class TeamBuilderHomeController {
-  Future<PokemonTeamModel?> loadTeam(int userId, int teamId) async {
-    JsonSave jsonSave = JsonSave();
-    PokemonTeamModel? pokemonTeam;
 
-    Map<String, dynamic> jsonFileContent =
-        await jsonSave.readJsonFromLocalStorage('users_data');
 
-    List<dynamic> usersList = jsonFileContent['users'] ?? [];
-
-    for (var user in usersList) {
-      if (user['id'] == userId) {
-        List<dynamic> teams = user['teams'] ?? [];
-
-        for (var team in teams) {
-          if (team['id'] == teamId) {
-            pokemonTeam = PokemonTeamModel.fromJson(team);
-            break;
-          }
-        }
-        break;
-      }
-    }
-
-    return pokemonTeam;
-  }
-
+  //APAGAR
   Future<PokemonTeamModel?> loadTeamUpdate(int userId, int teamId) async {
     JsonSave jsonSave = JsonSave();
     Map<String, dynamic> jsonFileContent =
@@ -188,32 +166,9 @@ class TeamBuilderHomeController {
   );
 }
 
-  Future<void> deleteTeam(BuildContext context, int userId, int teamId) async {
-    JsonSave jsonSave = JsonSave();
-    Map<String, dynamic> userData =
-        await jsonSave.readJsonFromLocalStorage('users_data');
-
-    List<dynamic> teams = userData['users'][userId - 1]['teams'];
-
-    if (teamId <= teams.length) {
-      teams.removeAt(teamId - 1);
-
-      userData['users'][userId - 1]['teams'] = teams;
-
-      await jsonSave.saveJsonToLocalStorage(jsonEncode(userData), 'users_data');
-      Navigator.of(context).pushReplacementNamed('/home');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Time removido com sucesso!')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro: Time não encontrado.')),
-      );
-    }
-  }
 
   void deleteDialog(
-      BuildContext context, String teamName, int userId, int teamId) {
+      BuildContext context, String teamName, int teamId) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -239,7 +194,9 @@ class TeamBuilderHomeController {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () async {
-                deleteTeam(context, userId, teamId);
+                PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
+                pokemonTeamsService.deleteTeam(teamId);
+                Navigator.of(context).pushReplacementNamed('/home');
               },
               child: Text(
                 'Deletar',

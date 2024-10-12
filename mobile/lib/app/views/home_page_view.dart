@@ -64,7 +64,6 @@ class HomePageState extends State<HomePage> {
           }
 
           List<PokemonTeamModel> teams = snapshot.data!;
-          print(teams);
 
           return Container(
             height: double.infinity,

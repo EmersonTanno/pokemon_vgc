@@ -6,6 +6,7 @@ import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/team_builder_home_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/main.dart';
 
 class TeamBuilderHome extends StatefulWidget {
   @override
@@ -28,14 +29,15 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
   @override
   void initState() {
     super.initState();
-    userId = int.parse(jsonSave.returnJsonId('logged_user'));
-    teamId = int.parse(jsonSave.returnJsonId('team_data'));
-    teamData = teamBuilderHomeController.loadTeam(userId, teamId);
+    userId = loggedUser;
+    //teamId = int.parse(jsonSave.returnJsonId('team_data'));
+    //teamData = teamBuilderHomeController.loadTeam(userId, teamId);
     userData = homePageController.getUserInfo(userId);
   }
 
   @override
   Widget build(BuildContext context) {
+    final PokemonTeamModel pokemonData = ModalRoute.of(context)?.settings.arguments as PokemonTeamModel;
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Team Builder')),
@@ -56,57 +58,39 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
           );
         },
       ),
-      body: FutureBuilder<PokemonTeamModel?>(
-        future: teamData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return const Center(child: Text('Erro ao carregar o time.'));
-          } else if (!snapshot.hasData || snapshot.data == null) {
-            return const Center(child: Text('Nenhum time encontrado.'));
-          }
-
-          PokemonTeamModel team = snapshot.data!;
-
-          return Center(
+      body:Center(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  PokemonBox(pokemon: team.pokemon1),
+                  PokemonBox(pokemon: pokemonData.pokemon1),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: team.pokemon2),
+                  PokemonBox(pokemon: pokemonData.pokemon2),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: team.pokemon3),
+                  PokemonBox(pokemon: pokemonData.pokemon3),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: team.pokemon4),
+                  PokemonBox(pokemon: pokemonData.pokemon4),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: team.pokemon5),
+                  PokemonBox(pokemon: pokemonData.pokemon5),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: team.pokemon6),
+                  PokemonBox(pokemon: pokemonData.pokemon6),
                 ],
               ),
             ),
-          );
-        },
-      ),
-      floatingActionButton: FutureBuilder<PokemonTeamModel?>(
-        future: teamData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data != null) {
-            PokemonTeamModel team = snapshot.data!;
-            return FloatingActionButton(
+          ),
+
+
+      floatingActionButton:FloatingActionButton(
               backgroundColor: Colors.white,
               child: Icon(
                 Icons.dangerous,
@@ -115,17 +99,11 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
               onPressed: () {
                 teamBuilderHomeController.deleteDialog(
                   context,
-                  team.team_name,
-                  userId,
-                  teamId,
+                  pokemonData.team_name,
+                  pokemonData.id,
                 );
               },
-            );
-          } else {
-            return SizedBox();
-          }
-        },
-      ),
+            ),
     );
   }
 }

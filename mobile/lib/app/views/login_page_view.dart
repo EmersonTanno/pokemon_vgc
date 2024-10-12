@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
                     PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
                     //TESTES POKEMONTEAMSERVICE!!! APAGAR
                     
-                    pokemonTeamsService.deleteTeam(4);
                   },
                   child: Container(
                     width: 200,

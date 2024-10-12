@@ -12,7 +12,7 @@ class TeamBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        homePageController.selectTeam(context, teamData.id);
+        homePageController.selectTeam(context, teamData);
       },
       child: Card(
         color: Color.fromARGB(255, 175, 175, 175),
