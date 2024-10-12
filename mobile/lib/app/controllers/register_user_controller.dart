@@ -10,7 +10,7 @@ class RegisterUserController {
 
     UserService userService = UserService();
     bool validUser = true;
-    int _id = 0;
+    int id = 0;
 
     var existingUsers = await userService.getUsers();
 
@@ -18,20 +18,16 @@ class RegisterUserController {
       if(username == user.name || email == user.email){
         validUser = false;
       }
-      _id = user.id;
+      id = user.id;
     }
 
     if(validUser == false){
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Usuário ou Email já cadastrados')),
+        const SnackBar(content: Text('Usuário ou Email já cadastrados')),
       );
     }else {
-      userService.createUser(_id+1, username, email, password);
+      userService.createUser(id+1, username, email, password);
     }
-  }
-
-  void printUsers() {
-    jsonSave.printLocalStorage('users_data');
   }
 
   void toLoginPage(BuildContext context) {
