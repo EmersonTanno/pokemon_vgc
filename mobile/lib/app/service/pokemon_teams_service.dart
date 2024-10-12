@@ -44,20 +44,13 @@ class PokemonTeamsService{
   }
 
   Future<PokemonTeamModel> getTeamById(int teamId) async {
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      List<dynamic> existingTeams = json.decode(response.body);
-
-      for (var team in existingTeams) {
-        if (team['id'] == teamId) {
-          return PokemonTeamModel.fromJson(team);
+    final teams = await getTeams();
+    for (var team in teams) {
+        if (team.id == teamId) {
+          return team;
         }
       }
       throw Exception('Failed to find team');
-    } else {
-      throw Exception('Failed to find team');
-    }
   }
 
   Future<void> createTeam(String teamName) async {
@@ -86,7 +79,7 @@ class PokemonTeamsService{
     );
     
     var response = await http.post(Uri.parse(url),
-      body: jsonEncode({"id": id+1, "user_id": loggedUser, "team-name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
+      body: jsonEncode({"id": id+1, "user_id": loggedUser, "team_name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
     if (response.statusCode == 201){
       print('Team created successfully');
     } else {

@@ -42,12 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: GestureDetector(
                   onTap: () async {
                     PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
-                    //pokemonTeamsService.createTeam('teamName');
-                    List<PokemonTeamModel> teams = await pokemonTeamsService.getTeams(); //getTeamsByUserId(1);
-                    for(PokemonTeamModel team in teams){
-                      print(team.id);
-                      print('============');
-                    }
+                    //TESTES POKEMONTEAMSERVICE!!! APAGAR
                     
                     
                   },
