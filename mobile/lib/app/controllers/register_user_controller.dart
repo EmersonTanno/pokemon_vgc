@@ -9,7 +9,7 @@ class RegisterUserController {
     bool validUser = true;
     int id = 0;
 
-    var existingUsers = await userService.getUsers();
+    var existingUsers = await userService.getAll();
 
     for(UserModel user in existingUsers){
       if(username == user.name || email == user.email){
@@ -24,6 +24,7 @@ class RegisterUserController {
       );
     }else {
       userService.createUser(id+1, username, email, password);
+      Navigator.of(context).pushReplacementNamed('/home', arguments: id+1);
     }
   }
 

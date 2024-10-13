@@ -1,22 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pokemon_vgc/app/models/user_model.dart';
+import 'package:pokemon_vgc/app/service/abstract_service.dart';
 
-class UserService {
+class UserService extends AbstractService{
 
   final String url = 'http://localhost:3000/users';
-
-  Future<List<UserModel>> getUsers() async {
-    var response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      List<dynamic> jsonList = jsonDecode(response.body);
-      List<UserModel> users = jsonList.map((json) => UserModel.fromJson(json)).toList();
-      return users;
-    } else {
-      throw Exception('Failed to load users');
-    }
-  }
 
   Future<UserModel> getUserById(int id) async {
     var response = await http.get(Uri.parse('$url/$id'));
@@ -97,5 +86,9 @@ class UserService {
     }
   }
 
+  @override
+  UserModel fromJson(Map<String, dynamic> json) {
+    return UserModel.fromJson(json);
+  }
 
 }
