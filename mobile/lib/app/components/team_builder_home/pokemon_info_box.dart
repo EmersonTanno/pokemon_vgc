@@ -8,7 +8,7 @@ class PokemonInfoBox extends StatelessWidget {
   final double screenWidth;
   @override
   Widget build(BuildContext context) {
-    if (pokemon.name != '') {
+    if (pokemon.name != '-') {
       return SingleChildScrollView(
           child: Container(
         height: MediaQuery.of(context).size.height / 4,

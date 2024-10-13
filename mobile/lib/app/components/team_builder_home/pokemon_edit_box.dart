@@ -129,7 +129,7 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                   Container(
                     width: MediaQuery.of(context).size.width / 6,
                     height: MediaQuery.of(context).size.height / 6,
-                    child: _pokemon.image.isNotEmpty
+                    child: _pokemon.image != "-"
                         ? Image.network(_pokemon.image, fit: BoxFit.contain)
                         : Image.asset('assets/images/logo.png',
                             fit: BoxFit.contain),
