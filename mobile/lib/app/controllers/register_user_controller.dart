@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 import 'package:pokemon_vgc/app/service/user_service.dart';
 
 class RegisterUserController {
-  JsonSave jsonSave = JsonSave();
-
   Future<void> registerUser(String username, String email, String password, BuildContext context) async {
 
     UserService userService = UserService();

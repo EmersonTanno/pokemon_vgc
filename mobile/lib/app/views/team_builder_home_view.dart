@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/custom_drawer/custom_drawer.dart';
 import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_box/pokemon_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/team_builder_home_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
@@ -22,7 +21,6 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
   late Future<UserModel> userData;
   final TeamBuilderHomeController teamBuilderHomeController =
       TeamBuilderHomeController();
-  final JsonSave jsonSave = JsonSave();
   final HomePageController homePageController = HomePageController();
 
   @override

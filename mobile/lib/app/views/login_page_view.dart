@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/login_page/button_login_page.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/controllers/login_page_controller.dart';
 import 'package:pokemon_vgc/app/service/user_service.dart';
 
@@ -12,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final JsonSave jsonSave = JsonSave();
   final UserService userService = UserService();
 
   late LoginPageController loginPageController;

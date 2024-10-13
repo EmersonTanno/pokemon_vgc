@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/custom_drawer/custom_drawer.dart';
 import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 import 'package:pokemon_vgc/main.dart';
@@ -19,7 +18,6 @@ class HomePageState extends State<HomePage> {
   late int userId;
   late Future<UserModel> userData;
   final HomePageController homePageController = HomePageController();
-  final JsonSave jsonSave = JsonSave();
 
   @override
   void initState() {
