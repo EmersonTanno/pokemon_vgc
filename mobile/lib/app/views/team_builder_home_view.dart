@@ -5,7 +5,7 @@ import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/team_builder_home_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
-import 'package:pokemon_vgc/main.dart';
+import 'package:pokemon_vgc/app/service/user_service.dart';
 
 class TeamBuilderHome extends StatefulWidget {
   @override
@@ -26,15 +26,14 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
   @override
   void initState() {
     super.initState();
-    userId = loggedUser;
-    //teamId = int.parse(jsonSave.returnJsonId('team_data'));
-    //teamData = teamBuilderHomeController.loadTeam(userId, teamId);
-    userData = homePageController.getUserInfo(userId);
   }
 
   @override
   Widget build(BuildContext context) {
     final PokemonTeamModel teamData = ModalRoute.of(context)?.settings.arguments as PokemonTeamModel;
+    userId = teamData.user_id;
+    UserService userService = UserService();
+    userData = userService.getUserById(userId);
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Team Builder')),
@@ -50,7 +49,7 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
               Navigator.of(context).pushReplacementNamed('/');
             },
             onNavigateHome: () {
-              Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(context).pushReplacementNamed('/home', arguments: teamData.user_id.toInt());
             },
           );
         },

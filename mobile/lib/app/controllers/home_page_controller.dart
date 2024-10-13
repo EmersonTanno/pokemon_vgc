@@ -3,12 +3,11 @@ import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 import 'package:pokemon_vgc/app/service/user_service.dart';
-import 'package:pokemon_vgc/main.dart';
 
 class HomePageController {
   Future<List<PokemonTeamModel>> loadTeams(int userId) async {
     PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
-    List<PokemonTeamModel> teams = await pokemonTeamsService.getTeamsByUserId(loggedUser);
+    List<PokemonTeamModel> teams = await pokemonTeamsService.getTeamsByUserId(userId);
 
     return teams;
   }
@@ -17,17 +16,16 @@ class HomePageController {
     UserService userService = UserService();
     late UserModel user;
 
-    user = await userService.getUserById(loggedUser);
+    user = await userService.getUserById(userId);
 
     return user;
   }
 
   void selectTeam(BuildContext context, PokemonTeamModel team) {
-    print(team.pokemon1.name);
     Navigator.of(context).pushReplacementNamed('/pokemonTeam', arguments: team);
   }
 
-  void createTeamAlert(BuildContext context) {
+  void createTeamAlert(BuildContext context, int userId) {
     TextEditingController teamNameController = TextEditingController();
     PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
 
@@ -66,7 +64,7 @@ class HomePageController {
                 PokemonTeamModel team;
                 String teamName = teamNameController.text;
                 if (teamName.isNotEmpty) {
-                  teamId = await pokemonTeamsService.createTeam(teamName);
+                  teamId = await pokemonTeamsService.createTeam(teamName, userId);
                   team = await pokemonTeamsService.getTeamById(teamId);
                   Navigator.of(context).pushReplacementNamed('/pokemonTeam', arguments: team);
                 }else{

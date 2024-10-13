@@ -139,8 +139,10 @@ class TeamBuilderHomeController {
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
               onPressed: () async {
                 PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
+                PokemonTeamModel team = await pokemonTeamsService.getTeamById(teamId);
+                int userId = team.user_id.toInt();
                 pokemonTeamsService.deleteTeam(teamId);
-                Navigator.of(context).pushReplacementNamed('/home');
+                Navigator.of(context).pushReplacementNamed('/home', arguments: userId);
               },
               child: Text(
                 'Deletar',

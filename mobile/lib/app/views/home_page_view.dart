@@ -4,7 +4,6 @@ import 'package:pokemon_vgc/app/components/home_page/team_box.dart';
 import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
-import 'package:pokemon_vgc/main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,15 +19,10 @@ class HomePageState extends State<HomePage> {
   final HomePageController homePageController = HomePageController();
 
   @override
-  void initState() {
-    super.initState();
-    userId = loggedUser;
+  Widget build(BuildContext context) {
+    userId = ModalRoute.of(context)?.settings.arguments as int;
     userData = homePageController.getUserInfo(userId);
     teamsFuture = homePageController.loadTeams(userId);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       drawer: FutureBuilder<UserModel>(
         future: userData,
@@ -40,7 +34,7 @@ class HomePageState extends State<HomePage> {
               Navigator.of(context).pushReplacementNamed('/');
             },
             onNavigateHome: () {
-              Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(context).pushReplacementNamed('/home', arguments: userId);
             },
           );
         },
@@ -91,7 +85,7 @@ class HomePageState extends State<HomePage> {
         ),
         onPressed: () {
           setState(() {
-            homePageController.createTeamAlert(context);
+            homePageController.createTeamAlert(context, userId);
           });
         },
       ),
