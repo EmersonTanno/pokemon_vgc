@@ -20,7 +20,6 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
   late int userId;
   late int teamId;
   late Future<UserModel> userData;
-  late Future<PokemonTeamModel?> teamData;
   final TeamBuilderHomeController teamBuilderHomeController =
       TeamBuilderHomeController();
   final JsonSave jsonSave = JsonSave();
@@ -37,7 +36,7 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
 
   @override
   Widget build(BuildContext context) {
-    final PokemonTeamModel pokemonData = ModalRoute.of(context)?.settings.arguments as PokemonTeamModel;
+    final PokemonTeamModel teamData = ModalRoute.of(context)?.settings.arguments as PokemonTeamModel;
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Team Builder')),
@@ -63,27 +62,27 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  PokemonBox(pokemon: pokemonData.pokemon1),
+                  PokemonBox(pokemon: teamData.pokemon1, team: teamData),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: pokemonData.pokemon2),
+                  PokemonBox(pokemon: teamData.pokemon2, team: teamData),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: pokemonData.pokemon3),
+                  PokemonBox(pokemon: teamData.pokemon3, team: teamData),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: pokemonData.pokemon4),
+                  PokemonBox(pokemon: teamData.pokemon4, team: teamData),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: pokemonData.pokemon5),
+                  PokemonBox(pokemon: teamData.pokemon5, team: teamData),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 1000,
                   ),
-                  PokemonBox(pokemon: pokemonData.pokemon6),
+                  PokemonBox(pokemon: teamData.pokemon6, team: teamData),
                 ],
               ),
             ),
@@ -99,8 +98,8 @@ class TeamBuilderHomeState extends State<TeamBuilderHome> {
               onPressed: () {
                 teamBuilderHomeController.deleteDialog(
                   context,
-                  pokemonData.team_name,
-                  pokemonData.id,
+                  teamData.team_name,
+                  teamData.id,
                 );
               },
             ),

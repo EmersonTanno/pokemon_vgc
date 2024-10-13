@@ -25,22 +25,15 @@ class PokemonTeamsService{
 
 
   Future<List<PokemonTeamModel>> getTeamsByUserId(int userId) async {
-    final response = await http.get(Uri.parse(url));
+    final existingTeams = await getTeams();
+    List<PokemonTeamModel> usersTeams = [];
 
-    if (response.statusCode == 200) {
-      List<dynamic> existingTeams = json.decode(response.body);
-      List<PokemonTeamModel> usersTeams = [];
-
-      for (var team in existingTeams) {
-        if (team['user_id'] == userId) {
-          usersTeams.add(PokemonTeamModel.fromJson(team));
-        }
+    for (var team in existingTeams) {
+      if (team.user_id == userId) {
+        usersTeams.add(team);
       }
-
-      return usersTeams;
-    } else {
-      throw Exception('Failed to load teams');
     }
+    return usersTeams;
   }
 
   Future<PokemonTeamModel> getTeamById(int teamId) async {
@@ -79,7 +72,7 @@ class PokemonTeamsService{
     );
     
     var response = await http.post(Uri.parse(url),
-      body: jsonEncode({"id": (id+1).toString(), "user_id": loggedUser, "team_name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
+      body: jsonEncode({"id": (id+1).toString(), "user_id": loggedUser.toString(), "team_name": teamName, "pokemon1": pokemon, "pokemon2": pokemon, "pokemon3": pokemon, "pokemon4": pokemon, "pokemon5": pokemon, "pokemon6": pokemon}));
     if (response.statusCode == 201){
       print('Team created successfully');
     } else {
@@ -101,6 +94,34 @@ class PokemonTeamsService{
       throw Exception('Failed to delete team ${response.statusCode}');
     }
   }
+
+  Future<void> editTeam(int teamId, PokemonTeamModel updatedTeam) async {
+    var response = await http.put(
+      Uri.parse('$url/$teamId'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({
+      "id": updatedTeam.id.toString(),
+      "user_id": updatedTeam.user_id.toString(),
+      "team_name": updatedTeam.team_name,
+      "pokemon1": updatedTeam.pokemon1.toJson(),
+      "pokemon2": updatedTeam.pokemon2.toJson(),
+      "pokemon3": updatedTeam.pokemon3.toJson(),
+      "pokemon4": updatedTeam.pokemon4.toJson(),
+      "pokemon5": updatedTeam.pokemon5.toJson(),
+      "pokemon6": updatedTeam.pokemon6.toJson(),
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    print('Team updated successfully');
+  } else {
+    throw Exception('Failed to update team ${response.statusCode}');
+  }
+}
+
+  
 
   
 }

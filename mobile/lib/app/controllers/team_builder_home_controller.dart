@@ -1,37 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_edit_box.dart';
 import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_info_box.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 
 class TeamBuilderHomeController {
 
-
-  //APAGAR
-  Future<PokemonTeamModel?> loadTeamUpdate(int userId, int teamId) async {
-    JsonSave jsonSave = JsonSave();
-    Map<String, dynamic> jsonFileContent =
-        await jsonSave.readJsonFromLocalStorage('users_data');
-    List<dynamic> usersList = jsonFileContent['users'] ?? [];
-
-    for (var user in usersList) {
-      if (user['id'] == userId) {
-        List<dynamic> teams = user['teams'] ?? [];
-        for (var team in teams) {
-          if (team['id'] == teamId) {
-            return PokemonTeamModel.fromJson(team);
-          }
-        }
-      }
-    }
-    return null;
-  }
-
-  void openPokemonDetails(BuildContext context, PokemonModel pokemon) {
+  void openPokemonDetails(BuildContext context, PokemonModel pokemon, int teamId) {
     double screenWidth = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
@@ -59,7 +35,7 @@ class TeamBuilderHomeController {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                this.editPokemon(context, pokemon);
+                editPokemon(context, pokemon, teamId);
               },
               child: Text(
                 'Editar',
@@ -72,8 +48,7 @@ class TeamBuilderHomeController {
     );
   }
 
- void editPokemon(BuildContext context, PokemonModel pokemon) {
-  final JsonSave jsonSave = JsonSave();
+ void editPokemon(BuildContext context, PokemonModel pokemon, int teamId) {
   double screenWidth = MediaQuery.of(context).size.width;
 
   showDialog(
@@ -92,10 +67,8 @@ class TeamBuilderHomeController {
         actions: [
           TextButton(
             onPressed: () {
-              String placeHolder = '';
-              jsonSave.saveJsonToLocalStorage(placeHolder, 'updated_pokemon');
               Navigator.of(context).pop();
-              openPokemonDetails(context, pokemon);
+              openPokemonDetails(context, pokemon, teamId);
             },
             child: Text(
               'Voltar',
@@ -104,55 +77,26 @@ class TeamBuilderHomeController {
           ),
           ElevatedButton(
             onPressed: () async {
-              // Carregar o time atual do localStorage
-              int userId = int.parse(jsonSave.returnJsonId('logged_user'));
-              int teamId = int.parse(jsonSave.returnJsonId('team_data'));
-              String updatedPokemon = jsonSave.returnJsonId('updated_pokemon');
-
-              // Verificar se updatedPokemon é null ou vazio
-              if (updatedPokemon == '' || updatedPokemon.isEmpty) {
-                print("Erro: Nenhum Pokémon atualizado encontrado.");
-                Navigator.of(context).pop(); // Fecha o diálogo e sai
-                return;
+              if(changedPokemon.name != '-'){
+              PokemonTeamsService pokemonTeamsService = PokemonTeamsService();
+              PokemonTeamModel team = await pokemonTeamsService.getTeamById(teamId);
+              if(team.pokemon1.name == pokemon.name){
+                team.pokemon1 = changedPokemon;
+              }else if(team.pokemon2.name == pokemon.name){
+                team.pokemon2 = changedPokemon;
+              }else if(team.pokemon3.name == pokemon.name){
+                team.pokemon3 = changedPokemon;
+              }else if(team.pokemon4.name == pokemon.name){
+                team.pokemon4 = changedPokemon;
+              }else if(team.pokemon5.name == pokemon.name){
+                team.pokemon5 = changedPokemon;
+              }else if(team.pokemon6.name == pokemon.name){
+                team.pokemon6 = changedPokemon;
               }
-
-              Map<String, dynamic> pokemonData = jsonDecode(updatedPokemon);
-              PokemonModel pokemon2 = PokemonModel.fromJson(pokemonData);
-              int count = 0;
-              int pokemon_local = 0;
-
-              PokemonTeamModel? teamDataModel =
-                  await loadTeamUpdate(userId, teamId);
-
-              if (teamDataModel != null) {
-                List<PokemonModel> pokemonList = [
-                  teamDataModel.pokemon1,
-                  teamDataModel.pokemon2,
-                  teamDataModel.pokemon3,
-                  teamDataModel.pokemon4,
-                  teamDataModel.pokemon5,
-                  teamDataModel.pokemon6,
-                ];
-
-                // Atualizar o Pokémon na lista do time
-                for (var i = 0; i < pokemonList.length; i++) {
-                  count++;
-                  if (pokemonList[i].name == pokemon.name) {
-                    pokemonList[i] = pokemon2;
-                    pokemon_local = count;
-                    break;
-                  }
-                }
-
-                await jsonSave.savePokemonInUserData(
-                    pokemon2, userId - 1, teamId - 1, pokemon_local);
-                //limpa o updated_pokemon
-                String placeHolder = '';
-                jsonSave.saveJsonToLocalStorage(placeHolder, 'updated_pokemon');
-                Navigator.of(context).pushReplacementNamed('/pokemonTeam');
-              } else {
-                print("Erro: O time não foi encontrado.");
-                Navigator.of(context).pop();
+              pokemonTeamsService.editTeam(teamId, team);
+              Navigator.of(context).pushReplacementNamed('/pokemonTeam', arguments: team);
+              }else{
+                Navigator.pop(context);
               }
             },
             child: Text(

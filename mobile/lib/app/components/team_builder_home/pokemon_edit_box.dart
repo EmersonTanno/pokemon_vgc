@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'dart:convert';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
+
+late PokemonModel changedPokemon;
 
 class PokemonEditBox extends StatefulWidget {
   final PokemonModel pokemon;
@@ -21,6 +22,8 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
 
   @override
   void initState() {
+    PokemonModel pokemonVazio = PokemonModel(name: '-', lvl: 0, nature: '-', ability: '-', hp: 0, atk:  0, def:  0, spa:  0, spd:  0, spe:  0, image: '-', move1: '-', move2: '-', move3: '-', move4: '-');
+    changedPokemon = pokemonVazio;
     super.initState();
     _pokemon = widget.pokemon;
     _nameController = TextEditingController(text: _pokemon.name);
@@ -39,7 +42,7 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
 
       setState(() {
         _pokemon = PokemonModel(
-          name: data['name'],
+          name: data['name'][0].toUpperCase() + data['name'].substring(1).toLowerCase(),
           image: data['sprites']['front_default'],
           lvl: 50,
           hp: data['stats'][0]['base_stat'],
@@ -63,9 +66,9 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
               ? data['moves'][3]['move']['name']
               : 'Move 4',
         );
-        String pokemonJson = jsonEncode(_pokemon.toJson());
-        final JsonSave jsonSave = JsonSave();
-        jsonSave.saveJsonToLocalStorage(pokemonJson, 'updated_pokemon');
+        if(_pokemon.name != '-'){
+          changedPokemon = _pokemon;
+        }
       });
     } else {
       print("Erro ao buscar o Pokémon: ${response.statusCode}");

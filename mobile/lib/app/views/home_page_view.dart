@@ -5,7 +5,6 @@ import 'package:pokemon_vgc/app/controllers/home_page_controller.dart';
 import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
-import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
 import 'package:pokemon_vgc/main.dart';
 
 class HomePage extends StatefulWidget {

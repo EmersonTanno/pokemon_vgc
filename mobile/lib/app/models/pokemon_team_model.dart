@@ -4,12 +4,12 @@ class PokemonTeamModel {
   final int id;
   final int user_id;
   final String team_name;
-  final PokemonModel pokemon1;
-  final PokemonModel pokemon2;
-  final PokemonModel pokemon3;
-  final PokemonModel pokemon4;
-  final PokemonModel pokemon5;
-  final PokemonModel pokemon6;
+  PokemonModel pokemon1;
+  PokemonModel pokemon2;
+  PokemonModel pokemon3;
+  PokemonModel pokemon4;
+  PokemonModel pokemon5;
+  PokemonModel pokemon6;
 
   PokemonTeamModel({
     required this.id,
@@ -42,7 +42,7 @@ class PokemonTeamModel {
   factory PokemonTeamModel.fromJson(Map<String, dynamic> json) {
     return PokemonTeamModel(
       id: int.parse(json['id']), 
-      user_id: json['user_id'], 
+      user_id: int.parse(json['user_id']), 
       team_name: json['team_name'],
       pokemon1: PokemonModel.fromJson(json['pokemon1']),
       pokemon2: PokemonModel.fromJson(json['pokemon2']),

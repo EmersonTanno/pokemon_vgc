@@ -5,24 +5,26 @@ import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_box/pokemon
 import 'package:pokemon_vgc/app/components/team_builder_home/pokemon_box/pokemon_box_status.dart';
 import 'package:pokemon_vgc/app/controllers/team_builder_home_controller.dart';
 import 'package:pokemon_vgc/app/models/pokemon_model.dart';
+import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 
 class PokemonBox extends StatelessWidget {
 
   final PokemonModel pokemon;
+  final PokemonTeamModel team;
   final TeamBuilderHomeController teamBuilderHomeController = TeamBuilderHomeController();
-  PokemonBox({super.key, required this.pokemon});
+  PokemonBox({super.key, required this.pokemon, required this.team});
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     
-    if(pokemon.name != ''){
+    if(pokemon.name != '-'){
     return Container(
       width: screenWidth - 50,
       height: screenWidth / 4,
       child: InkWell(
         onTap: (){
-          teamBuilderHomeController.openPokemonDetails(context, pokemon);
+          teamBuilderHomeController.openPokemonDetails(context, pokemon, team.id);
         },
         child: Card(
           shape: RoundedRectangleBorder(
@@ -61,8 +63,7 @@ class PokemonBox extends StatelessWidget {
       height: screenWidth / 4,
       child: InkWell(
         onTap: (){
-          //posso chamar aqui a função de criar o pokemon
-          teamBuilderHomeController.openPokemonDetails(context, pokemon);
+          teamBuilderHomeController.openPokemonDetails(context, pokemon, team.id);
         },
         child: Card(
           color: const Color.fromARGB(255, 175, 175, 175),

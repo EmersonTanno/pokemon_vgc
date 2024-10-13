@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:pokemon_vgc/app/controllers/json_user_controller.dart';
-import 'package:pokemon_vgc/app/models/pokemon_model.dart';
 import 'package:pokemon_vgc/app/models/pokemon_team_model.dart';
 import 'package:pokemon_vgc/app/models/user_model.dart';
 import 'package:pokemon_vgc/app/service/pokemon_teams_service.dart';
@@ -70,7 +66,6 @@ class HomePageController {
                 if (teamName.isNotEmpty) {
                   pokemonTeamsService.createTeam(teamName);
                 }
-                Navigator.of(context).pop();
                 Navigator.of(context).pushReplacementNamed('/home');
               },
               child: Text('Salvar'),
