@@ -79,30 +79,30 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height / 3,
-        width: MediaQuery.of(context).size.width,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-            side: BorderSide(
-              color: Colors.black,
-              width: 1,
-            ),
+      height: MediaQuery.of(context).size.height / 3,
+      width: MediaQuery.of(context).size.width,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+          side: BorderSide(
+            color: Colors.black,
+            width: 1,
           ),
-          color: const Color.fromARGB(255, 175, 175, 175),
-          child: Column(
-            children: [
-              Container(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  // Campo para alterar o nome do Pokémon
-                  Container(
+        ),
+        color: const Color.fromARGB(255, 175, 175, 175),
+        child: Column(
+          children: [
+            Container(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                // Campo para alterar o nome do Pokémon
+                Flexible(
+                  flex: 3,
+                  child: Container(
                     width: widget.screenWidth / 3,
                     child: TextFormField(
                       controller: _nameController,
@@ -112,99 +112,173 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                       ),
                     ),
                   ),
-
-                  // Botão de reload para buscar as informações do Pokémon
-                  IconButton(
+                ),
+                // Botão de reload para buscar as informações do Pokémon
+                Flexible(
+                  flex: 1,
+                  child: IconButton(
                     icon: Icon(Icons.refresh, color: Colors.black),
                     onPressed: () {
                       _fetchPokemonData(_nameController.text.toLowerCase());
                     },
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  // Imagem do Pokémon
-                  Container(
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                // Imagem do Pokémon
+                Flexible(
+                  flex: 2,
+                  child: Container(
                     width: MediaQuery.of(context).size.width / 6,
                     height: MediaQuery.of(context).size.height / 6,
                     child: _pokemon.image != "-"
                         ? Image.network(_pokemon.image, fit: BoxFit.contain)
-                        : Image.asset('assets/images/logo.png',
+                        : Image.network('assets/images/logo.png',
                             fit: BoxFit.contain),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 100,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            right:
-                                BorderSide(color: Colors.black, width: 2.0))),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width / 100,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(color: Colors.black, width: 2.0),
+                    ),
                   ),
-                  SizedBox(width: 10),
-                  Column(
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  flex: 4,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Lvl: ${_pokemon.lvl}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Nature: ${_pokemon.nature}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Ability: ${_pokemon.ability}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Lvl: ${_pokemon.lvl}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Nature: ${_pokemon.nature}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Ability: ${_pokemon.ability}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
                       SizedBox(height: 10),
-                      Text('MoveSet:',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('- ${_pokemon.move1}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.02)),
-                      Text('- ${_pokemon.move2}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.02)),
-                      Text('- ${_pokemon.move3}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.02)),
-                      Text('- ${_pokemon.move4}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.02)),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'MoveSet:',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '- ${_pokemon.move1}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '- ${_pokemon.move2}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '- ${_pokemon.move3}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '- ${_pokemon.move4}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(width: 20),
-                  Column(
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  flex: 4,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Status:',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('HP: ${_pokemon.hp}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Attack: ${_pokemon.atk}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Defense: ${_pokemon.def}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Sp. Atk: ${_pokemon.spa}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Sp. Def: ${_pokemon.spd}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
-                      Text('Speed: ${_pokemon.spe}',
-                          style:
-                              TextStyle(fontSize: widget.screenWidth * 0.025)),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Status:',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'HP: ${_pokemon.hp}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Attack: ${_pokemon.atk}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Defense: ${_pokemon.def}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Sp. Atk: ${_pokemon.spa}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Sp. Def: ${_pokemon.spd}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Speed: ${_pokemon.spe}',
+                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                        ),
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
+    ),
+
     );
   }
 }

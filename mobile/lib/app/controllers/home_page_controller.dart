@@ -61,12 +61,18 @@ class HomePageController {
               child: Text('Cancelar'),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                int teamId;
+                PokemonTeamModel team;
                 String teamName = teamNameController.text;
                 if (teamName.isNotEmpty) {
-                  pokemonTeamsService.createTeam(teamName);
+                  teamId = await pokemonTeamsService.createTeam(teamName);
+                  team = await pokemonTeamsService.getTeamById(teamId);
+                  Navigator.of(context).pushReplacementNamed('/pokemonTeam', arguments: team);
+                }else{
+                  Navigator.of(context).pop();
                 }
-                Navigator.of(context).pushReplacementNamed('/home');
+                
               },
               child: Text('Salvar'),
             ),

@@ -33,7 +33,7 @@ class TeamBox extends StatelessWidget {
                   flex: 2,
                   child: Column(
                     children: [
-                      Expanded(flex: 9, child: Text('${teamData.team_name ?? 'Unknown'}')),
+                      Expanded(flex: 9, child: Text('${teamData.team_name}')),
                       Expanded(
                         flex: 1,
                         child: Divider(
