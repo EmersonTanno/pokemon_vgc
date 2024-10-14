@@ -158,21 +158,21 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Lvl: ${_pokemon.lvl}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Nature: ${_pokemon.nature}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Ability: ${_pokemon.ability}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
                         ),
                       ),
                       SizedBox(height: 10),
@@ -180,35 +180,35 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'MoveSet:',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           '- ${_pokemon.move1}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.015),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           '- ${_pokemon.move2}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.015),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           '- ${_pokemon.move3}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.015),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           '- ${_pokemon.move4}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.015),
                         ),
                       ),
                     ],
@@ -224,49 +224,49 @@ class _PokemonInfoBoxState extends State<PokemonEditBox> {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Status:',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.02),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'HP: ${_pokemon.hp}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Attack: ${_pokemon.atk}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Defense: ${_pokemon.def}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Sp. Atk: ${_pokemon.spa}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Sp. Def: ${_pokemon.spd}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           'Speed: ${_pokemon.spe}',
-                          style: TextStyle(fontSize: widget.screenWidth * 0.025),
+                          style: TextStyle(fontSize: widget.screenWidth * 0.017),
                         ),
                       ),
                     ],

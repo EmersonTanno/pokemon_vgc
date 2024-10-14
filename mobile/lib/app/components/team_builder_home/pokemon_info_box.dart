@@ -52,65 +52,65 @@ class PokemonInfoBox extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SizedBox(
-                                height: MediaQuery.of(context).size.height / 100,
+                                height: MediaQuery.of(context).size.height / 200,
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Lvl: ${pokemon.lvl}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.02),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Nature: ${pokemon.nature}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.02),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Ability: ${pokemon.ability}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.02),
                                 ),
                               ),
                               SizedBox(
-                                height: MediaQuery.of(context).size.height / 100,
+                                height: MediaQuery.of(context).size.height / 200,
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'MoveSet:',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.02),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   '- ${pokemon.move1}',
-                                  style: TextStyle(fontSize: screenWidth * 0.02),
+                                  style: TextStyle(fontSize: screenWidth * 0.015),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   '- ${pokemon.move2}',
-                                  style: TextStyle(fontSize: screenWidth * 0.02),
+                                  style: TextStyle(fontSize: screenWidth * 0.015),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   '- ${pokemon.move3}',
-                                  style: TextStyle(fontSize: screenWidth * 0.02),
+                                  style: TextStyle(fontSize: screenWidth * 0.015),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   '- ${pokemon.move4}',
-                                  style: TextStyle(fontSize: screenWidth * 0.02),
+                                  style: TextStyle(fontSize: screenWidth * 0.015),
                                 ),
                               ),
                             ],
@@ -147,42 +147,42 @@ class PokemonInfoBox extends StatelessWidget {
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'HP: ${pokemon.hp}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Attack: ${pokemon.atk}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Defense: ${pokemon.def}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Sp. Atk: ${pokemon.spa}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Sp. Def: ${pokemon.spd}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   'Speed: ${pokemon.spe}',
-                                  style: TextStyle(fontSize: screenWidth * 0.025),
+                                  style: TextStyle(fontSize: screenWidth * 0.017),
                                 ),
                               ),
                             ],
