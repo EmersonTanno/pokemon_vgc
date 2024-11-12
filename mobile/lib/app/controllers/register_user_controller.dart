@@ -18,13 +18,20 @@ class RegisterUserController {
       id = user.id;
     }
 
-    if(validUser == false){
+    if(username == '' || email == '' || password == ''){
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Usuário ou Email já cadastrados')),
+        const SnackBar(content: Text('Informe Usuário, Senha e e-mail')),
       );
-    }else {
-      userService.createUser(id+1, username, email, password);
-      Navigator.of(context).pushReplacementNamed('/home', arguments: id+1);
+    }else{
+      if(validUser == false){
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Usuário ou Email já cadastrados')),
+        );
+      }else {
+        
+        userService.createUser(id+1, username, email, password);
+        Navigator.of(context).pushReplacementNamed('/home', arguments: id+1);
+      }
     }
   }
 
